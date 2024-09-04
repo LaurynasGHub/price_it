@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
+//components
+import Toggler from './components/Theme_toggler/Toggler';
 
-import './App.css';
-import Toggler from './components/theme_toggler/Toggler';
-
+import './app.scss';
 import './index.scss';
 
 //components
-import Main from './main/Main';
+import Main from './components/Main/Main';
 
 function App() {
   const preference = window.matchMedia('(prefers-color-scheme: dark)').matches;

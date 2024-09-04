@@ -1,5 +1,6 @@
 .welcome-div {
   background-color: var(--background-color);
+  transition: background-color 250ms ease-in-out;
 }
 
 .welcome-title {

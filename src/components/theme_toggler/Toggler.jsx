@@ -15,6 +15,7 @@ function Toggler({ handleChange, isChecked }) {
       <label htmlFor="check">
         {/* TODO
         change "dark mode to icons as sun and moon"
+        icons should change dependent on theme
          */}
         <h5>dark mode</h5>
       </label>
