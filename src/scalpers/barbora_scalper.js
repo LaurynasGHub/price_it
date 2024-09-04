@@ -7,6 +7,8 @@ async function barboraScalper(searchTerms) {
     // shop url without some options, added is only search terms and limit
     // TODO
     // make limit changeable from 5 to input value
+    // change provided values from array to string?
+    // then replace spaces with +?
     'https://www.barbora.lt/api/eshop/v1/analyticsearch/query?&limit=5&query=';
 
   //combine the search terms
@@ -25,4 +27,4 @@ async function barboraScalper(searchTerms) {
   }
 }
 
-barboraScalper();
+barboraScalper(['pienas']);
