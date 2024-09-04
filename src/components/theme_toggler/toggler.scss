@@ -1,6 +1,6 @@
 .toggle-container {
   position: absolute;
-  top: 2em;
+  // top: 2em;
   right: 2em;
 }
 
@@ -13,6 +13,7 @@
   align-items: center;
   cursor: pointer;
   color: var(--primary-text-color);
+  transition: color 250ms ease-in-out;
 }
 
 .toggle + label::before {

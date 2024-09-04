@@ -1,18 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-:root {
-  --background-color: #f6f6f6;
-  --foreground-color: #003cff;
-  --primary-text-color: #0a0a0a;
-  --secondary-text-color: #ffffff;
-  --toggle-bg: #f0eb9d;
-  --toggle-fg: #ffd000;
-}
+@import './variables.scss';
+@import './utilities.scss';
+@import '~bootstrap/scss/bootstrap';
 
 [data-theme='dark'] {
   --background-color: #0a0a0a;

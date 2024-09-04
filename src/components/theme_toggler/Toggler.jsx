@@ -4,21 +4,20 @@ import './toggler.scss';
 
 function Toggler({ handleChange, isChecked }) {
   return (
-    <div className="toggle-container">
-      <input
-        type="checkbox"
-        id="check"
-        className="toggle"
-        onChange={handleChange}
-        checked={isChecked}
-      />
-      <label htmlFor="check">
-        {/* TODO
-        change "dark mode to icons as sun and moon"
-        icons should change dependent on theme
-         */}
-        <h5>dark mode</h5>
-      </label>
+    <div>
+      <div class="form-check form-switch default-div">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+          onChange={handleChange}
+          checked={isChecked}
+        ></input>
+        <label class="default-title" for="flexSwitchCheckDefault">
+          Toggle theme
+        </label>
+      </div>
     </div>
   );
 }

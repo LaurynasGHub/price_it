@@ -4,8 +4,8 @@ import './main.scss';
 
 function Main() {
   return (
-    <div className="welcome-div">
-      <h4 className="welcome-title">Welcome to Price it</h4>
+    <div className="default-div p-2">
+      <h4 className="default-title">Welcome to Price it</h4>
     </div>
   );
 }
