@@ -11,8 +11,8 @@ function Navbar() {
   const [isDark, setIsDark] = useLocalStorage('isDark', preference);
 
   return (
-    <div className="default-div p-2 navbar">
-      <h4 className="default-title">Price it</h4>
+    <div className="default-div p-4 navbar">
+      <h2 className="default-title navbar-title">Price it</h2>
       <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
     </div>
   );
