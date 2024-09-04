@@ -5,6 +5,9 @@
 //
 async function rimiScalper(searchTerms) {
   console.log('===rimi search tool===');
+  // import cheerio for html manipulation
+  const cheerio = require('cheerio');
+
   // Shop URL
   let fetchUrl = 'https://www.rimi.lt/e-parduotuve/lt/paieska?query=';
 
