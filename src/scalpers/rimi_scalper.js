@@ -11,6 +11,9 @@
 async function rimiScalper(searchTerms) {
   console.log('===rimi scalper===');
 
+  const fs = require('fs');
+  const deleteUpToKeyword = require('../utils/get_text_after_position');
+
   // Shop URL
   let fetchUrl = 'https://www.rimi.lt/e-parduotuve/lt/paieska?query=';
 
@@ -22,21 +25,31 @@ async function rimiScalper(searchTerms) {
   console.log(`fullFetchUrl: ${fullFetchUrl}`);
 
   try {
-    // get the search results from rimi web shop
+    // Start fetch process and log that it's in progress
+    console.log(' > Fetching data...');
+
+    // Get the search results from Rimi web shop
     const response = await fetch(fullFetchUrl);
+
+    // Log if fetch is successful
+    console.log(' > Fetch completed!');
+
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(` > HTTP error! Status: ${response.status}`);
     }
-    // take the result as text
+
+    // Take the result as text
     const result = await response.text();
-    //
-    // manipulate the result text
-    // find "ecommerce": tag and get the info below
-    // get x amount of lines after the tag?
-    //
+
+    // Perform the operation to get the part after the keyword "ecommerce"
+    const manResult = deleteUpToKeyword(result, 'ecommerce');
+
+    // Log the manipulated result
+    console.log('Manipulated Result:', manResult);
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
 // Call the async function
 rimiScalper(['pienas']);
