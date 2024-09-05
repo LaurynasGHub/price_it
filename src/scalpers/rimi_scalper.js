@@ -1,38 +1,33 @@
 //
-// rimi e-shop doesn't seem to return api call for search as barbora does
-// sol 1: try to use webscrapper bot
-// sol 2: get the html and try to edit/manipulate the html
+// Rimi scraper bot
+// Function searches in a rimi e-shop and returns html file
+// Html is then manipulated to get the json object
 //
-// ==========
-// TODO
-// get ecommerce tag, right now scalper gets bannerTitle element
-// and not the "name" element that is in "impressions" tab
-//
-async function rimiScalper(searchTerms) {
-  console.log('===rimi scalper===');
+async function rimiScraper(searchTerms, writeTxt) {
+  console.log(' > rimi scalper');
 
   const fs = require('fs');
-  const deleteUpToKeyword = require('../utils/get_text_after_position');
+  const deleteUpToKeyword = require('../utils/delete_up_to_keyword');
 
-  // Shop URL
+  // Rimi e-shop URL
   let fetchUrl = 'https://www.rimi.lt/e-parduotuve/lt/paieska?query=';
 
-  // Combine the search terms
+  // Combine the search terms that are passed as arg
   let fullSearchTerms = searchTerms.join('+');
 
-  // Combine everything to one string
+  // Combine search terms and URl in to one string
   let fullFetchUrl = `${fetchUrl}${fullSearchTerms}`;
-  console.log(`fullFetchUrl: ${fullFetchUrl}`);
+  console.log(` >> fullFetchUrl: ${fullFetchUrl}`);
 
   try {
     // Start fetch process and log that it's in progress
-    console.log(' > Fetching data...');
+    console.log(' >> Fetching data...');
 
     // Get the search results from Rimi web shop
     const response = await fetch(fullFetchUrl);
 
     // Log if fetch is successful
-    console.log(' > Fetch completed!');
+    console.log(' >> Fetch completed!');
 
     if (!response.ok) {
       throw new Error(` > HTTP error! Status: ${response.status}`);
@@ -41,15 +36,19 @@ async function rimiScalper(searchTerms) {
     // Take the result as text
     const result = await response.text();
 
-    // Perform the operation to get the part after the keyword "ecommerce"
-    const manResult = deleteUpToKeyword(result, 'ecommerce');
+    // Perform the operation to get only the needed part
+    const manResult = deleteUpToKeyword(result, 'currencyCode');
 
-    // Log the manipulated result
-    console.log('Manipulated Result:', manResult);
+    // convert the manResulted to JSON file that has the needed structure
+
+    // Write the manipulated result into a text file if needed
+    if (writeTxt) {
+      fs.writeFileSync(`${searchTerms}-rimi-results`, manResult);
+    }
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
 // Call the async function
-rimiScalper(['pienas']);
+rimiScraper(['duona'], false);

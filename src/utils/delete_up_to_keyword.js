@@ -7,8 +7,6 @@ const fs = require('fs');
 
 // Function to delete content up to a specific keyword in a string
 function deleteUpToKeyword(text, keyword) {
-  console.log('==deleteUpToKeyword==');
-
   const keywordIndex = text.indexOf(keyword);
 
   // If the keyword is found, remove all content up to that point
