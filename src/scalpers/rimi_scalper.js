@@ -1,13 +1,14 @@
 //
 // Rimi scraper bot
-// Function searches in a rimi e-shop and returns html file
-// Html is then manipulated to get the json object
+// Function searches in a rimi e-shop and returns html file.
+// Html is then manipulated to get the json object.
 //
 async function rimiScraper(searchTerms, writeTxt) {
   console.log(' > rimi scalper');
 
   const fs = require('fs');
   const deleteUpToKeyword = require('../utils/delete_up_to_keyword');
+  const convertTextToJson = require('../utils/convert_text_to_json');
 
   // Rimi e-shop URL
   let fetchUrl = 'https://www.rimi.lt/e-parduotuve/lt/paieska?query=';
@@ -40,6 +41,8 @@ async function rimiScraper(searchTerms, writeTxt) {
     const manResult = deleteUpToKeyword(result, 'currencyCode');
 
     // convert the manResulted to JSON file that has the needed structure
+    const rimiJson = convertTextToJson(manResult, true);
+    // console.log(rimiJson);
 
     // Write the manipulated result into a text file if needed
     if (writeTxt) {
