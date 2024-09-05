@@ -26,29 +26,34 @@ async function rimiScalper(searchTerms) {
   console.log(`fullFetchUrl: ${fullFetchUrl}`);
 
   try {
+    // get the search results from rimi web shop
     const response = await fetch(fullFetchUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
-    // const result = await response.text();
+    // take the result as text
     const result = await response.text();
-
+    // load the result into cheerio
     const $ = cheerio.load(result);
 
     // Array to hold extracted dataLayer pushes
-    const dataLayerPushes = [];
+    let dataLayerPushes = [];
 
     // Find all <script> tags
     $('script').each((i, scriptTag) => {
-      const scriptContent = $(scriptTag).html();
+      // gets html elements content as string
+      let scriptContent = $(scriptTag).html();
 
       // Check if the script contains a "dataLayer.push" call
-      const dataLayerMatch = scriptContent.match(/dataLayer.push\((.*?)\);/s);
+      // here it finds the first dataLayer.push, we need second
+      let dataLayerMatch = scriptContent.match(/dataLayer.push\((.*?)\);/s);
 
       if (dataLayerMatch) {
         // Extract the JSON content inside the push
-        const dataLayerJson = dataLayerMatch[1];
+        console.log('dataLayerMatch:');
+        console.log(dataLayerMatch[i]);
+
+        let dataLayerJson = dataLayerMatch[i];
 
         try {
           // Parse the JSON content and push to the array
