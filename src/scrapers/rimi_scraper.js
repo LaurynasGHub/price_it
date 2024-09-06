@@ -41,12 +41,17 @@ async function rimiScraper(searchTerms, writeTxt) {
     const manResult = deleteUpToKeyword(result, 'currencyCode');
 
     // convert the manResulted to JSON file that has the needed structure
-    const rimiJson = convertTextToJson(manResult, true);
-    // console.log(rimiJson);
+    const rimiJson = convertTextToJson(manResult);
+    console.log(rimiJson);
+
+    // for (let product of rimiJson.products) {
+    //   console.log('===');
+    //   console.log(`${product.name} \n kaina ${product.price} eur.`);
+    // }
 
     // Write the manipulated result into a text file if needed
     if (writeTxt) {
-      fs.writeFileSync(`${searchTerms}-rimi-results`, manResult);
+      fs.writeFileSync(`${searchTerms}-rimi-results`, JSON.stringify(rimiJson));
     }
   } catch (error) {
     console.error('Error:', error);
@@ -54,4 +59,4 @@ async function rimiScraper(searchTerms, writeTxt) {
 }
 
 // Call the async function
-rimiScraper(['duona'], false);
+rimiScraper(['duona'], true);
