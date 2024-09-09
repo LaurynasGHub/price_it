@@ -4,7 +4,7 @@
 // Html is then manipulated to get the json object.
 //
 async function rimiScraper(searchTerms, exportText) {
-  console.log(' > rimi scalper');
+  console.log(' > rimi scraper');
 
   const fs = require('fs');
   const deleteUpToKeyword = require('../utils/delete_up_to_keyword');
@@ -21,13 +21,10 @@ async function rimiScraper(searchTerms, exportText) {
   console.log(` >> fullFetchUrl: ${fullFetchUrl}`);
 
   try {
-    // Start fetch process and log that it's in progress
     console.log(' >> Fetching data...');
-
-    // Get the search results from Rimi web shop
+    // get the response from rimi e-shop
     const response = await fetch(fullFetchUrl);
 
-    // Log if fetch is successful
     console.log(' >> Fetch completed!');
 
     if (!response.ok) {
@@ -43,17 +40,22 @@ async function rimiScraper(searchTerms, exportText) {
     // convert the manResulted to JSON file that has the needed structure
     const rimiJson = convertTextToJson(manResult, '": ');
 
-    for (let product of rimiJson) {
+    for (let product of rimiJson.products) {
       console.log('===');
       console.log(`${product.name} \n kaina ${product.price} eur.`);
     }
 
     // Write the manipulated result into a text file if needed
     if (exportText) {
-      fs.writeFileSync(`${searchTerms}-rimi-results`, JSON.stringify(rimiJson));
+      fs.writeFileSync(
+        `${searchTerms}-rimi-results.txt`,
+        JSON.stringify(rimiJson)
+      );
     }
+    return rimiJson;
   } catch (error) {
     console.error('Error:', error);
+    return;
   }
 }
 
