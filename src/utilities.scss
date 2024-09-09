@@ -8,3 +8,12 @@
   background-color: var(--background-color);
   transition: background-color 250ms ease-in-out;
 }
+
+.custom-border {
+  border: 0.05rem solid var(--primary-border-color);
+}
+
+.search-bar {
+  background: none;
+  border: none;
+}
