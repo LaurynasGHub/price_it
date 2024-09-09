@@ -2,11 +2,24 @@
   border-color: rgba(0, 0, 0, 0.25);
   outline: 0;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  // background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(0,0,0,0.25)'/></svg>");
+  border-color: rgb(171, 168, 168);
 }
+
 .form-switch .form-check-input:checked {
   background-color: #141416;
   border-color: #141416;
-  border: none;
-  // background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+  // border: none;
+  border-color: rgb(240, 222, 222);
+}
+
+.form-switch .form-check-input {
+  border-color: rgb(240, 222, 222);
+}
+
+.svg-day {
+  fill: rgb(255, 255, 255);
+}
+
+.svg-night {
+  fill: rgba(0, 0, 0, 1);
 }

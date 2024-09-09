@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App" data-theme={isDark ? 'dark' : 'light'}>
       <Navbar />
-      {/* <Main /> */}
+      <Main />
     </div>
   );
 }
