@@ -16,7 +16,7 @@ async function rimiScraper(searchTerms, exportText) {
   // Combine the search terms that are passed as arg
   let fullSearchTerms = searchTerms.join('+');
 
-  // Combine search terms and URl in to one string
+  // Combine search terms and URL in to one string
   let fullFetchUrl = `${fetchUrl}${fullSearchTerms}`;
   console.log(` >> fullFetchUrl: ${fullFetchUrl}`);
 
@@ -59,5 +59,5 @@ async function rimiScraper(searchTerms, exportText) {
   }
 }
 
-// Call the async function
+// Call the function to test
 rimiScraper(['duona'], false);
