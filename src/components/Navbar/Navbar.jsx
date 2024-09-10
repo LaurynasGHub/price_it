@@ -2,7 +2,7 @@ import React from 'react';
 import useLocalStorage from 'use-local-storage';
 
 // components
-import Toggler from '../Theme_toggler/Toggler';
+import Toggler from '../Toggler/Toggler';
 
 import './navbar.scss';
 
