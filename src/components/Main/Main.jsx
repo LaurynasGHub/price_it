@@ -4,16 +4,24 @@ import React from 'react';
 import ResultCards from '../ResultCards/ResultCards';
 import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
+import SearchButton from '../SearchButton/SearchButton';
+
+import './main.scss';
 
 function SearchCard() {
   return (
-    <div className="default-div custom-border rounded py-2 mx-3 default-text">
+    <div className="default-div  rounded py-2 m-3 default-text h-100">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-12 ">
+          <div className="col-8 col-sm-10 col-md-10">
             <SearchBar />
           </div>
+          <div className="col-4 col-sm-2 col-md-2">
+            <SearchButton />
+          </div>
         </div>
+      </div>
+      <div className="container-fluid">
         <div className="row">
           <div className="col-md-8">
             <ResultCards />

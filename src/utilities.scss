@@ -71,7 +71,7 @@
   animation: l20 2s infinite linear;
 }
 .loader:before {
-  content: '...';
+  content: '';
 }
 
 @keyframes l20 {
