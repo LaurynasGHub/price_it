@@ -7,7 +7,7 @@ import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 
 function SearchCard() {
   return (
-    <div className="default-div custom-border rounded py-2 m-1 default-text">
+    <div className="default-div custom-border rounded py-2 mx-3 default-text">
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12 ">
