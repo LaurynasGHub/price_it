@@ -13,6 +13,10 @@
   border: 0.05rem solid var(--primary-border-color);
 }
 
+.custom-border-bottom {
+  border-bottom: 0.05rem solid var(--primary-border-color);
+}
+
 .search-bar {
   background: none;
   border: none;
@@ -21,4 +25,34 @@
 .no-padding {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.non-styled-button {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.underline-button {
+  display: inline-block;
+  position: relative;
+  // color: #0087ca;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(232, 228, 228);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 }
