@@ -1,5 +1,5 @@
-async function barboraScalper(searchTerms) {
-  console.log('===barbora scalper===');
+async function barboraScraper(searchTerms) {
+  console.log('===barbora scraper===');
 
   //shop URL
   let fetchUrl =
@@ -27,4 +27,5 @@ async function barboraScalper(searchTerms) {
   }
 }
 
-barboraScalper(['pienas']);
+export { barboraScraper };
+// barboraScraper(['pienas']);

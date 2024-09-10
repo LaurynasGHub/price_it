@@ -3,6 +3,10 @@
 This project was created using React, Bootstrap and scss.
 Point of the project is to collect data from shops about product prices and then compare them.
 
+## TODO List:
+
+Setup a backend server and chanel scraper requests trough the server. Doing this will remove CORS error that occurs now. Move scrapers to backend and not frontend.
+
 ## Future planed updates:
 
 Future plans on expanding this project further and adding more functions:

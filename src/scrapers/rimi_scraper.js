@@ -59,5 +59,6 @@ async function rimiScraper(searchTerms, exportText) {
   }
 }
 
+module.exports = rimiScraper;
 // Call the function to test
-rimiScraper(['duona'], false);
+// rimiScraper(['duona'], false);
