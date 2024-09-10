@@ -1,15 +1,20 @@
-import React from 'react';
+import { React, useState } from 'react';
 
 // components
 import ResultCards from '../ResultCards/ResultCards';
 import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import SearchButton from '../SearchButton/SearchButton';
-import TestElement from '../TestComponent/TestComponent';
 
 import './main.scss';
 
-function SearchCard() {
+function Main() {
+  const [searchResults, setSearchResults] = useState('empty');
+
+  function searchForResults() {
+    console.log('searchResults');
+  }
+
   return (
     <div className="default-div rounded py-2 m-3 default-text">
       <div className="container-fluid pb-2">
@@ -18,7 +23,7 @@ function SearchCard() {
             <SearchBar />
           </div>
           <div className="col-4 col-sm-2 col-md-2">
-            <SearchButton />
+            <SearchButton onClickFunction={searchForResults} />
           </div>
         </div>
       </div>
@@ -28,32 +33,12 @@ function SearchCard() {
             <ResultCards />
           </div>
           <div className="col-md-4">
-            <MostSearchedItems />
+            <MostSearchedItems searchResults={searchResults} />
           </div>
         </div>
       </div>
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
-      <TestElement />
     </div>
   );
 }
 
-export default SearchCard;
+export default Main;
