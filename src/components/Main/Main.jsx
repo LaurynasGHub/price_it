@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 
 // components
-import ResultCards from '../ResultCards/ResultCards';
+import ResultsWindow from '../ResultsWindow/ResultsWindow';
 import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import SearchButton from '../SearchButton/SearchButton';
@@ -42,7 +42,7 @@ function Main() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-8">
-            <ResultCards />
+            <ResultsWindow />
           </div>
           <div className="col-md-4">
             <MostSearchedItems searchResults={searchResults} />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ResultCard from '../ResultCard/ResultCard';
 
-function ResultCards({ searchResults }) {
+function ResultsWindow({ searchResults }) {
   const [loading, setLoading] = useState(false);
 
   return (
@@ -30,4 +30,4 @@ function ResultCards({ searchResults }) {
   );
 }
 
-export default ResultCards;
+export default ResultsWindow;
