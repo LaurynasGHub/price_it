@@ -13,7 +13,7 @@ function App() {
   const [isDark, setIsDark] = useLocalStorage('isDark', preference);
 
   return (
-    <div className="App" data-theme={isDark ? 'dark' : 'light'}>
+    <div className="App h-100 w-100" data-theme={isDark ? 'dark' : 'light'}>
       <Navbar />
       <Main />
     </div>
