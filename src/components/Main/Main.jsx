@@ -5,6 +5,7 @@ import ResultCards from '../ResultCards/ResultCards';
 import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import SearchButton from '../SearchButton/SearchButton';
+import TestElement from '../TestComponent/TestComponent';
 
 import './main.scss';
 
@@ -31,26 +32,26 @@ function SearchCard() {
           </div>
         </div>
       </div>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-8">
-            <ResultCards />
-          </div>
-          <div className="col-md-4">
-            <MostSearchedItems />
-          </div>
-        </div>
-      </div>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-8">
-            <ResultCards />
-          </div>
-          <div className="col-md-4">
-            <MostSearchedItems />
-          </div>
-        </div>
-      </div>
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
+      <TestElement />
     </div>
   );
 }
