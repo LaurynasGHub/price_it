@@ -6,6 +6,8 @@ import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import SearchButton from '../SearchButton/SearchButton';
 
+import { cfg } from '../../cfg/cfg';
+
 import './main.scss';
 
 function Main() {
@@ -16,13 +18,44 @@ function Main() {
     setSearchValue(e.target.value);
   };
 
-  function searchForResults() {
+  async function searchForBarboraResults() {
     console.log('searchResults');
 
-    // This function should make a call to API and get back Barbora e-shop results
+    console.log(searchValue);
+
+    const response = await fetch(
+      `${cfg.API.HOST}/scrapers/barbora?searchTerm=${searchValue}`,
+      {
+        method: 'GET',
+      }
+    );
+
+    const barboraRes = await response.json();
+
+    console.log('barbroaRes \n', barboraRes);
+    return barboraRes;
+  }
+
+  async function searchForRimiResults() {
+    console.log('searchResults');
 
     console.log(searchValue);
+
+    const response = await fetch(
+      `${cfg.API.HOST}/scrapers/rimi?searchTerm=${searchValue}`,
+      {
+        method: 'GET',
+      }
+    );
+
+    const rimiRes = await response.json();
+
+    console.log('rimiRes \n', rimiRes);
+
+    return rimiRes;
   }
+
+  async function getSearchResults() {}
 
   return (
     <div className="container-fluid pb-2">
@@ -31,7 +64,7 @@ function Main() {
           <SearchBar handleInputChange={handleInputChange} />
         </div>
         <div className="col-4 col-sm-2 col-md-2">
-          <SearchButton onClickFunction={searchForResults} />
+          <SearchButton onClickFunction={getSearchResults} />
         </div>
       </div>
       <div className="row mt-2">
