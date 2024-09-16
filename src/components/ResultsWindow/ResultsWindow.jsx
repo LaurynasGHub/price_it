@@ -6,7 +6,7 @@ function ResultsWindow({ searchResults }) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="default-div custom-border rounded p-3 mt-2 default-text">
+    <div className="default-div rounded p-3 mt-2 default-text">
       {searchResults === 'empty' || !searchResults ? (
         <div className="h-100 d-flex align-items-center justify-content-center">
           {loading ? (

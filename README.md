@@ -5,7 +5,9 @@ Point of the project is to collect data from shops about product prices and then
 
 ## TODO List:
 
-Setup a backend server and chanel scraper requests trough the server. Doing this will remove CORS error that occurs now. Move scrapers to backend and not frontend.
+• Setup a backend server and chanel scraper requests trough the server. Doing this will remove CORS error that occurs now. Move scrapers to backend and not frontend. Completed ✅
+
+• Make result cards for each shop search. In results window there should be a stack of resultCard for each shop. They should be vertical.
 
 ## Future planed updates:
 

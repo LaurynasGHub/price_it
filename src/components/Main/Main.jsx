@@ -1,10 +1,11 @@
 import { React, useState } from 'react';
 
 // components
-import ResultsWindow from '../ResultsWindow/ResultsWindow';
 import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
+import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
+import ResultCard from '../ResultCard/ResultCard';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -13,6 +14,7 @@ import './main.scss';
 function Main() {
   const [searchResults, setSearchResults] = useState('empty');
   const [searchValue, setSearchValue] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -69,10 +71,31 @@ function Main() {
       </div>
       <div className="row mt-2">
         <div className="col-md-8">
-          <ResultsWindow />
+          <div className="default-div rounded p-3 mt-2 default-text">
+            {searchResults === 'empty' || !searchResults ? (
+              <div className="h-100 d-flex align-items-center justify-content-center">
+                {loading ? (
+                  <div className="loader">...</div>
+                ) : (
+                  <p className="custom-border-bottom p-2">No results yet</p>
+                )}
+              </div>
+            ) : Array.isArray(searchResults) && searchResults.length > 0 ? (
+              searchResults.map((item) => (
+                <ResultCard
+                  key={`${item.title}${item.price}`}
+                  title={item.title}
+                  price={item.price}
+                />
+              ))
+            ) : (
+              <p>No results found</p>
+            )}
+          </div>
         </div>
         <div className="col-md-4">
           <MostSearchedItems searchResults={searchResults} />
+          <CostOfMainItemsCart />
         </div>
       </div>
     </div>
