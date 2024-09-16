@@ -57,7 +57,13 @@ function Main() {
     return rimiRes;
   }
 
-  async function getSearchResults() {}
+  async function getSearchResults() {
+    const barboraResult = await searchForBarboraResults();
+
+    console.log(barboraResult.products);
+
+    setSearchResults(barboraResult.products);
+  }
 
   return (
     <div className="container-fluid pb-2">
@@ -83,8 +89,8 @@ function Main() {
             ) : Array.isArray(searchResults) && searchResults.length > 0 ? (
               searchResults.map((item) => (
                 <ResultCard
-                  key={`${item.title}${item.price}`}
-                  title={item.title}
+                  key={`${item.name}${item.price}`}
+                  title={item.name}
                   price={item.price}
                 />
               ))

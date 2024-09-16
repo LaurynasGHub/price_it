@@ -1,10 +1,12 @@
 import React from 'react';
 
+import './resultCard.scss';
+
 function ResultCard({ title, price }) {
   return (
-    <div>
-      <h6>{title}</h6>
-      <p>{price}</p>
+    <div className="d-flex">
+      <p>{title}</p>
+      <p className="price-p">, {price} €</p>
     </div>
   );
 }
