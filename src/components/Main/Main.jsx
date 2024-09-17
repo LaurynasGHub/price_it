@@ -21,48 +21,44 @@ function Main() {
     setSearchValue(e.target.value);
   };
 
-  async function searchForBarboraResults() {
+  async function getScraperResults() {
     setLoading(true);
 
     const response = await fetch(
-      `${cfg.API.HOST}/scrapers/barbora?searchTerm=${searchValue}`,
+      `${cfg.API.HOST}/scrapers/results?searchTerm=${searchValue}`,
       {
         method: 'GET',
       }
     );
 
-    const barboraRes = await response.json();
+    const result = await response.json();
+    console.log('Fetched data:', result);
 
-    setLoading(false);
-
-    return barboraRes;
-  }
-
-  async function searchForRimiResults() {
-    console.log('searchResults');
-
-    console.log(searchValue);
-
-    const response = await fetch(
-      `${cfg.API.HOST}/scrapers/rimi?searchTerm=${searchValue}`,
-      {
-        method: 'GET',
-      }
-    );
-
-    const rimiRes = await response.json();
-
-    console.log('rimiRes \n', rimiRes);
-
-    return rimiRes;
+    return result;
   }
 
   async function getSearchResults() {
-    const barboraResult = await searchForBarboraResults();
+    const fetchResult = await getScraperResults();
 
-    console.log(barboraResult.products);
+    console.log('Fetch result:\n', fetchResult);
 
-    setSearchResults(Array.from(barboraResult.products));
+    //
+    // Gives empty result
+    //
+    // console.log('===\n', searchResults);
+    console.log('===');
+    console.log(fetchResult);
+
+    console.log('===');
+    console.log(fetchResult.barbora);
+
+    console.log('===');
+    console.log(fetchResult.barbora.products.length);
+
+    setSearchResults(fetchResult);
+
+    setLoading(false);
+    // console.log('===\n', searchResults.barbora.products);
   }
 
   return (
@@ -86,13 +82,10 @@ function Main() {
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}
               </div>
-            ) : //
-            // TODO
-            // insert loader when searching when results are displayed
-            //
-            searchResults.length > 0 ? (
+            ) : searchResults.barbora?.products.length > 0 ? (
               <div className="rounded default-div custom-border p-2 small">
-                <ResultCards searchResults={searchResults} />
+                <ResultCards searchResults={searchResults.barbora.products} />
+                <ResultCards searchResults={searchResults.rimi.products} />
               </div>
             ) : (
               <p>No results found</p>

@@ -11,6 +11,12 @@ Point of the project is to collect data from shops about product prices and then
 
 • Show loader when searching when the previous search results are displayed.
 
+• Rimi brings back 20 results when barbora returns 5.
+
+• Iki (LastMile) scraper.
+
+• Check maybe it's possible to get price from Lidl and Norfa.
+
 ## Future planed updates:
 
 Future plans on expanding this project further and adding more functions:
