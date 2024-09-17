@@ -9,6 +9,8 @@ Point of the project is to collect data from shops about product prices and then
 
 • Make result cards for each shop search. In results window there should be a stack of resultCard for each shop. They should be vertical.
 
+• Show loader when searching when the previous search results are displayed.
+
 ## Future planed updates:
 
 Future plans on expanding this project further and adding more functions:

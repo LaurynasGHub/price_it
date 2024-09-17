@@ -22,9 +22,7 @@ function Main() {
   };
 
   async function searchForBarboraResults() {
-    console.log('searchResults');
-
-    console.log(searchValue);
+    setLoading(true);
 
     const response = await fetch(
       `${cfg.API.HOST}/scrapers/barbora?searchTerm=${searchValue}`,
@@ -35,7 +33,8 @@ function Main() {
 
     const barboraRes = await response.json();
 
-    console.log('barbroaRes \n', barboraRes);
+    setLoading(false);
+
     return barboraRes;
   }
 
@@ -87,7 +86,11 @@ function Main() {
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}
               </div>
-            ) : searchResults.length > 0 ? (
+            ) : //
+            // TODO
+            // insert loader when searching when results are displayed
+            //
+            searchResults.length > 0 ? (
               <div className="rounded default-div custom-border p-2 small">
                 <ResultCards searchResults={searchResults} />
               </div>
