@@ -6,13 +6,14 @@ import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCard from '../ResultCard/ResultCard';
+import ResultCards from '../ResultCards/ResultCards';
 
 import { cfg } from '../../cfg/cfg';
 
 import './main.scss';
 
 function Main() {
-  const [searchResults, setSearchResults] = useState('empty');
+  const [searchResults, setSearchResults] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -62,7 +63,7 @@ function Main() {
 
     console.log(barboraResult.products);
 
-    setSearchResults(barboraResult.products);
+    setSearchResults(Array.from(barboraResult.products));
   }
 
   return (
@@ -77,8 +78,8 @@ function Main() {
       </div>
       <div className="row mt-2">
         <div className="col-md-8">
-          <div className="default-div rounded p-3 mt-2 default-text">
-            {searchResults === 'empty' || !searchResults ? (
+          <div className="default-div mt-2 default-text">
+            {!searchResults ? (
               <div className="h-100 d-flex align-items-center justify-content-center">
                 {loading ? (
                   <div className="loader">...</div>
@@ -86,14 +87,10 @@ function Main() {
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}
               </div>
-            ) : Array.isArray(searchResults) && searchResults.length > 0 ? (
-              searchResults.map((item) => (
-                <ResultCard
-                  key={`${item.name}${item.price}`}
-                  title={item.name}
-                  price={item.price}
-                />
-              ))
+            ) : searchResults.length > 0 ? (
+              <div className="rounded default-div custom-border p-2 small">
+                <ResultCards searchResults={searchResults} />
+              </div>
             ) : (
               <p>No results found</p>
             )}
