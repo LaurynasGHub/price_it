@@ -64,6 +64,16 @@ function Main() {
   return (
     <div className="container-fluid pb-2">
       <div className="row">
+        <div className="col-12 col-sm-12 col-md-12 default-div default-text">
+          <p className="info-text">
+            Welcome to Price It! Enter a search term for which you would like to
+            know the price. Search term <u>has to be in lithuanian</u>. If you
+            would like more specific results enter more search terms. I.e.:
+            duona Toste.
+          </p>
+        </div>
+      </div>
+      <div className="row">
         <div className="col-8 col-sm-10 col-md-10">
           <SearchBar handleInputChange={handleInputChange} />
         </div>
@@ -82,8 +92,14 @@ function Main() {
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}
               </div>
-            ) : searchResults.barbora?.products.length > 0 ? (
-              <div className="rounded default-div custom-border p-2 small">
+            ) : //
+            //
+            // TODO
+            // Check not only barbora.length but rimi to, display
+            // different warnings if different results aren't present
+            //
+            searchResults.barbora?.products.length > 0 ? (
+              <div className="default-div small">
                 <ResultCards searchResults={searchResults.barbora.products} />
                 <ResultCards searchResults={searchResults.rimi.products} />
               </div>

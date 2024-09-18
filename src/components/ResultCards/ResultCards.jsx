@@ -5,7 +5,8 @@ import ResultCard from '../ResultCard/ResultCard';
 
 function ResultCards({ searchResults }) {
   return (
-    <div>
+    <div className="custom-border rounded p-2 mb-3">
+      <div className="result-cards-info"></div>
       {searchResults.map((item) => (
         <ResultCard
           key={`${item.name}${item.price}`}
