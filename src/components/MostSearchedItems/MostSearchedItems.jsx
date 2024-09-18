@@ -14,7 +14,7 @@ function MostSearchedItems() {
     //
   }
   return (
-    <div className="default-div custom-border rounded p-3 mb-3 default-text">
+    <div className="default-div custom-border rounded p-3 my-3 default-text">
       <h5>Most popular searches:</h5>
       <li>1. Duona</li>
       <li>2. Pienas</li>
