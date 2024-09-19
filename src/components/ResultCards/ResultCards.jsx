@@ -3,16 +3,34 @@ import React from 'react';
 // components
 import ResultCard from '../ResultCard/ResultCard';
 
-function ResultCards({ searchResults }) {
+function ResultCards({ searchResults, shop }) {
+  function shopImgSwitch(shop) {
+    let imgPath;
+
+    switch (shop) {
+      case 'rimi':
+        imgPath = '/images/RIMI.png';
+        break;
+
+      case 'maxima':
+        imgPath = '/images/barbora_cover.jpeg';
+        break;
+      default:
+        break;
+    }
+
+    return imgPath;
+  }
+
   return (
     <div className="custom-border rounded p-2 my-3">
       <div className="container-fluid">
         <div className="row">
           <div className="p-2 col-4 col-sm-2 col-md-2">
             <img
-              className="image-fluid"
-              src="/images/barbora_cover.jpeg"
-              alt="barbora-img"
+              className="image-fluid rounded"
+              src={shopImgSwitch(shop)}
+              alt="shop-img"
             ></img>
           </div>
         </div>

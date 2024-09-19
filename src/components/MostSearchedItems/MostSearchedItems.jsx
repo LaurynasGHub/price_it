@@ -13,7 +13,7 @@ function MostSearchedItems() {
     window.addEventListener('resize', handleResize);
 
     handleResize();
-
+    // Remove event listener- prevents memory leaks
     return () => {
       window.removeEventListener('resize', handleResize);
     };

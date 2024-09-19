@@ -100,8 +100,14 @@ function Main() {
             //
             searchResults.barbora?.products.length > 0 ? (
               <div className="default-div small">
-                <ResultCards searchResults={searchResults.barbora.products} />
-                <ResultCards searchResults={searchResults.rimi.products} />
+                <ResultCards
+                  searchResults={searchResults.barbora.products}
+                  shop={'maxima'}
+                />
+                <ResultCards
+                  searchResults={searchResults.rimi.products}
+                  shop={'rimi'}
+                />
               </div>
             ) : (
               <p>No results found</p>
