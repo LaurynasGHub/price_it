@@ -22,8 +22,6 @@ function Main() {
   };
 
   async function getScraperResults() {
-    setLoading(true);
-
     const response = await fetch(
       `${cfg.API.HOST}/scrapers/results?searchTerm=${searchValue}`,
       {
@@ -38,27 +36,13 @@ function Main() {
   }
 
   async function getSearchResults() {
+    setLoading(true);
+
     const fetchResult = await getScraperResults();
-
-    console.log('Fetch result:\n', fetchResult);
-
-    //
-    // Gives empty result
-    //
-    // console.log('===\n', searchResults);
-    console.log('===');
-    console.log(fetchResult);
-
-    console.log('===');
-    console.log(fetchResult.barbora);
-
-    console.log('===');
-    console.log(fetchResult.barbora.products.length);
 
     setSearchResults(fetchResult);
 
     setLoading(false);
-    // console.log('===\n', searchResults.barbora.products);
   }
 
   return (
@@ -92,22 +76,25 @@ function Main() {
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}
               </div>
-            ) : //
-            //
-            // TODO
-            // Check not only barbora.length but rimi to, display
-            // different warnings if different results aren't present
-            //
-            searchResults.barbora?.products.length > 0 ? (
+            ) : searchResults.barbora?.products.length > 0 ||
+              searchResults.rimi?.products.length > 0 ? (
               <div className="default-div small">
-                <ResultCards
-                  searchResults={searchResults.barbora.products}
-                  shop={'maxima'}
-                />
-                <ResultCards
-                  searchResults={searchResults.rimi.products}
-                  shop={'rimi'}
-                />
+                {loading ? (
+                  <div className="h-100 d-flex align-items-center justify-content-center">
+                    <div className="loader pb-3">...</div>
+                  </div>
+                ) : (
+                  <div className="default-div small">
+                    <ResultCards
+                      searchResults={searchResults.barbora.products}
+                      shop={'maxima'}
+                    />
+                    <ResultCards
+                      searchResults={searchResults.rimi.products}
+                      shop={'rimi'}
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <p>No results found</p>

@@ -21,6 +21,23 @@ Point of the project is to collect data from shops about product prices and then
 
 Future plans on expanding this project further and adding more functions:
 
+### Add more items to navbar:
+
+• Statistics about product prices;
+• Instructions on how to use the search tool.
+
+### Add an option to insert items to a shopping cart:
+
+• Calculate full price;
+• Make different carts:
+• Cheapest;
+• Cheapest including gas;
+• Cheapest in one shop etc.
+
+### Maybe add some premium/paid tier
+
+Like shopping carts only for premium users etc.
+
 ### Add the the most popular searches:
 
 Add top 5 products searched and display times this product has been searched.

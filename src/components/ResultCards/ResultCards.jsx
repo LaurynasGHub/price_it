@@ -47,13 +47,19 @@ function ResultCards({ searchResults, shop }) {
           </div>
         </div>
       </div>
-      {searchResults.map((item) => (
-        <ResultCard
-          key={`${item.name}${item.price}`}
-          title={item.name}
-          price={item.price}
-        />
-      ))}
+      {searchResults.length > 0 ? (
+        searchResults.map((item) => (
+          <ResultCard
+            key={`${item.name}${item.price}`}
+            title={item.name}
+            price={item.price}
+          />
+        ))
+      ) : (
+        <p className="p-2">
+          No products found, check your search terms or try to redefine it.
+        </p>
+      )}
     </div>
   );
 }
