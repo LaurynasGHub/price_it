@@ -38,6 +38,14 @@ Future plans on expanding this project further and adding more functions:
 
 Like shopping carts only for premium users etc.
 
+### Add possibility to change how many results is returned
+
+Only for premium users add option to change results from 5 to 10 etc.
+
+### Add counter for requests
+
+Non - premium users can only make i.e. 5 requests every 24h.
+
 ### Add the the most popular searches:
 
 Add top 5 products searched and display times this product has been searched.
