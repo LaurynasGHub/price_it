@@ -77,7 +77,8 @@ function Main() {
                 )}
               </div>
             ) : searchResults.barbora?.products.length > 0 ||
-              searchResults.rimi?.products.length > 0 ? (
+              searchResults.rimi?.products.length > 0 ||
+              searchResults.lastMile?.products.length > 0 ? (
               <div className="default-div small">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
@@ -92,6 +93,10 @@ function Main() {
                     <ResultCards
                       searchResults={searchResults.rimi.products}
                       shop={'rimi'}
+                    />
+                    <ResultCards
+                      searchResults={searchResults.lastMile.products}
+                      shop={'iki'}
                     />
                   </div>
                 )}

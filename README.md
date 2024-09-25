@@ -42,6 +42,14 @@ Like shopping carts only for premium users etc.
 
 Only for premium users add option to change results from 5 to 10 etc.
 
+### Add links to the products
+
+After search is completed add links to search so users can go to e - shops and see the results. Or add that pressing on returned products takes user to that product page in the shop.
+
+### When hovering on name show product picture
+
+Check if this is even possible. Need to check if images are returned.
+
 ### Add counter for requests
 
 Non - premium users can only make i.e. 5 requests every 24h.

@@ -15,6 +15,10 @@ function ResultCards({ searchResults, shop }) {
       case 'maxima':
         imgPath = '/images/barbora_cover.jpeg';
         break;
+
+      case 'iki':
+        imgPath = '/images/IKI_logo.png';
+        break;
       default:
         break;
     }
