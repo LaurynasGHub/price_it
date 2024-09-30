@@ -12,7 +12,8 @@ function Navbar() {
 
   return (
     <div className="default-div p-4 navbar">
-      <h2 className="default-text navbar-title">Price it</h2>
+      <h2 className="default-text navbar-title mb-0">Price it</h2>
+      {/* add popovers here */}
       <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
     </div>
   );

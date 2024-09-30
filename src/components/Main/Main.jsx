@@ -5,7 +5,6 @@ import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
-import ResultCard from '../ResultCard/ResultCard';
 import ResultCards from '../ResultCards/ResultCards';
 
 import { cfg } from '../../cfg/cfg';
