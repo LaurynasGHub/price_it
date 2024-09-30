@@ -7,15 +7,15 @@ Point of the project is to collect data from shops about product prices and then
 
 • Setup a backend server and chanel scraper requests trough the server. Doing this will remove CORS error that occurs now. Move scrapers to backend and not frontend. Completed ✅
 
-• Make result cards for each shop search. In results window there should be a stack of resultCard for each shop. They should be vertical.
+• Make result cards for each shop search. In results window there should be a stack of resultCard for each shop. They should be vertical. Completed ✅
 
-• Show loader when searching when the previous search results are displayed.
+• Show loader when searching when the previous search results are displayed. Completed ✅
 
-• Rimi brings back 20 results when barbora returns 5.
+• Rimi brings back 20 results when barbora returns 5. Fixed ✅
 
-• Iki (LastMile) scraper.
+• Iki (LastMile) scraper. Completed ✅
 
-• Check maybe it's possible to get price from Lidl and Norfa.
+• Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible.
 
 ## Future planed updates:
 
