@@ -4,7 +4,7 @@ import './toggler.scss';
 
 function Toggler({ handleChange, isChecked }) {
   return (
-    <div className="form-check form-switch default-div">
+    <div className="form-check form-switch default-div center-items">
       <input
         className="form-check-input"
         type="checkbox"
