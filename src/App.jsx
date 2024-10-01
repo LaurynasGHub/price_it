@@ -1,9 +1,12 @@
 // import logo from './logo.svg';
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 //components
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main';
+import InfoPage from './components/InfoPage/InfoPage';
 
 import './app.scss';
 import './index.scss';
@@ -15,7 +18,11 @@ function App() {
   return (
     <div className="App" data-theme={isDark ? 'dark' : 'light'}>
       <Navbar />
-      <Main />
+      <Routes>
+        <Route path="/info" element={<InfoPage />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="*" element={<Navigate to="/main" />} />
+      </Routes>
     </div>
   );
 }
