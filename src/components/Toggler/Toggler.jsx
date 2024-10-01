@@ -14,7 +14,7 @@ function Toggler({ handleChange, isChecked }) {
         checked={isChecked}
       ></input>
       <label
-        className="default-text default-div"
+        className="default-text default-div ps-2"
         htmlFor="flexSwitchCheckDefault"
       >
         {isChecked ? (
