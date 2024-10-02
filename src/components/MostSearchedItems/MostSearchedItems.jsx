@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 function MostSearchedItems() {
+  const { searchData, setSearchData } = useContext(AppContext);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -19,18 +21,6 @@ function MostSearchedItems() {
     };
   }, []);
 
-  function getMostSearchedData() {
-    // Function should get the most searched items from backend
-    //
-    // Backend function:
-    // When item is searched check if that item is in JSON file;
-    // JSON file- search_term- XX, times_searched- XX;
-    // Get top 5 values from this JSON file;
-    // return those 5 values;
-    // Function should run when component gets loaded (mounts);
-    // Use useEffect hook.
-    //
-  }
   return (
     <div
       className={
@@ -45,6 +35,9 @@ function MostSearchedItems() {
       <li>3. Ledai</li>
       <li>4. Sūris</li>
       <li>5. Agurkai</li>
+      {searchData.map((item) => (
+        <li key={item.searchTerm}>{item.searchTerm}</li>
+      ))}
     </div>
   );
 }
