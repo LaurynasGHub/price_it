@@ -30,11 +30,6 @@ function MostSearchedItems() {
       }
     >
       <h5>Most popular searches:</h5>
-      <li>1. Duona</li>
-      <li>2. Pienas</li>
-      <li>3. Ledai</li>
-      <li>4. Sūris</li>
-      <li>5. Agurkai</li>
       {searchData.map((item) => (
         <li key={item.searchTerm}>{item.searchTerm}</li>
       ))}

@@ -29,7 +29,6 @@ function Main() {
     );
 
     const result = await response.json();
-    console.log('Fetched data:', result);
 
     return result;
   }
