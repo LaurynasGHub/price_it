@@ -5,8 +5,10 @@ export const AppContext = createContext();
 
 function AppContextProvider(props) {
   const [searchData, setSearchData] = useState([]);
+  const [mainCartData, setMainCartData] = useState([]);
+  const [mainCartPrices, setMainCartPrices] = useState([]);
 
-  const fetchData = async () => {
+  const fetchSearchData = async () => {
     try {
       const response = await fetch(`${cfg.API.HOST}/topSearches/results`);
 
@@ -18,13 +20,50 @@ function AppContextProvider(props) {
     }
   };
 
+  const getMainCartData = async () => {
+    try {
+      const response = await fetch(
+        `${cfg.API.HOST}/mainItems/products/results`
+      );
+
+      const data = await response.json();
+
+      setMainCartData(data);
+    } catch (error) {
+      console.log('Error:', error.message);
+    }
+  };
+
+  const getMainCartPrices = async () => {
+    try {
+      const response = await fetch(`${cfg.API.HOST}/mainItems/cart/results`);
+
+      const data = await response.json();
+
+      setMainCartPrices(data);
+    } catch (error) {
+      console.log('Error:', error.message);
+    }
+  };
+
   //   when page mounts gathers data from backend
   useEffect(() => {
-    fetchData();
+    fetchSearchData();
+    getMainCartData();
+    getMainCartPrices();
   }, []);
 
   return (
-    <AppContext.Provider value={{ searchData, setSearchData }}>
+    <AppContext.Provider
+      value={{
+        searchData,
+        setSearchData,
+        mainCartData,
+        setMainCartData,
+        mainCartPrices,
+        setMainCartPrices,
+      }}
+    >
       {props.children}
     </AppContext.Provider>
   );

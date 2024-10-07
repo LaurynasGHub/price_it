@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 function MostSearchedItems() {
-  function getCartData() {
-    //
-    // Function should return cost of main everyday items
-    //
-    // Main everyday items- milk, bread, butter, etc.
-    //
+  const { mainCartData, setMainCartData } = useContext(AppContext);
+  const { mainCartPrices, setMainCartPrices } = useContext(AppContext);
+
+  function showData() {
+    console.log(mainCartPrices);
   }
   return (
     <div className="default-div custom-border rounded p-3 my-3 default-text">
@@ -15,11 +15,9 @@ function MostSearchedItems() {
         Main products cart consists of the main everyday items: milk, bread,
         butter...
       </p>
-      <li>1. Norfa- 30$</li>
-      <li>2. Maxima- 35$</li>
-      <li>3. Lidl- 37$</li>
-      <li>4. Iki- 42$</li>
-      <li>5. Rimi- 54$</li>
+      {mainCartPrices.map((item) => (
+        <li key={item.shop}>{item.shop}</li>
+      ))}
     </div>
   );
 }

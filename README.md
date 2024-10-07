@@ -17,6 +17,8 @@ Point of the project is to collect data from shops about product prices and then
 
 • Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible.
 
+• Add loaders to cost of main cart items and most popular searches.
+
 ## Future planed updates:
 
 Future plans on expanding this project further and adding more functions:
@@ -56,7 +58,7 @@ Non - premium users can only make i.e. 5 requests every 24h.
 
 ### Add the the most popular searches:
 
-Add top 5 products searched and display times this product has been searched.
+Add top 5 products searched and display times this product has been searched. Completed, without times counter ✅
 
 ### Add graphs for price history:
 
