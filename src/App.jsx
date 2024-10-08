@@ -6,7 +6,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 //components
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main';
-import InfoPage from './components/InfoPage/InfoPage';
+import Profile from './components/Profile/Profile';
 
 import './app.scss';
 import './index.scss';
@@ -19,9 +19,9 @@ function App() {
     <div className="App" data-theme={isDark ? 'dark' : 'light'}>
       <Navbar />
       <Routes>
-        <Route path="/info" element={<InfoPage />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="*" element={<Navigate to="/main" />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/search_tool" element={<Main />} />
+        <Route path="*" element={<Navigate to="/search_tool" />} />
       </Routes>
     </div>
   );

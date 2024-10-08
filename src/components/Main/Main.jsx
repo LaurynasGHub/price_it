@@ -48,7 +48,7 @@ function Main() {
       <div className="row">
         <div className="col-12 col-sm-12 col-md-12 default-div default-text">
           <p className="info-text">
-            Welcome to Price It! Enter a search term for which you would like to
+            Welcome to Price It! Enter search term for which you would like to
             know the price. Search term <u>has to be in lithuanian</u>. If you
             would like more specific results enter more search terms. I.e.:
             duona Toste.
@@ -69,7 +69,7 @@ function Main() {
             {!searchResults ? (
               <div className="h-100 d-flex align-items-center justify-content-center">
                 {loading ? (
-                  <div className="loader">...</div>
+                  <div className="loader pb-3">...</div>
                 ) : (
                   <p className="custom-border-bottom p-2">No results yet</p>
                 )}

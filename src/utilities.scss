@@ -38,6 +38,15 @@
   align-items: center;
 }
 
+.hideOnResize {
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
+  @media only screen and (max-width: 355px) {
+    display: block;
+  }
+}
+
 .underline-button {
   display: inline-block;
   position: relative;
