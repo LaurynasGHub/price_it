@@ -100,7 +100,13 @@ function Main() {
                 )}
               </div>
             ) : (
-              <p>No results found</p>
+              <div className="h-100 d-flex align-items-center justify-content-center">
+                {loading ? (
+                  <div className="loader">...</div>
+                ) : (
+                  <p className="custom-border-bottom p-2">No results yet</p>
+                )}
+              </div>
             )}
           </div>
         </div>

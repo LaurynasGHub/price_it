@@ -11,7 +11,7 @@ function MostSearchedItems() {
       setIsMobile(window.innerWidth < 600);
     };
 
-    // Add event listener to window resize
+    // Add event listener for window resize
     window.addEventListener('resize', handleResize);
 
     handleResize();
