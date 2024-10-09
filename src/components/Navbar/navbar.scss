@@ -4,6 +4,14 @@
   display: flex;
   // why overflow hidden?
   overflow: hidden;
+
+  flex-direction: row;
+
+  .navbar-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .navbar-title {
