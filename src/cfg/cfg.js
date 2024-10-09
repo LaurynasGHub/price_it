@@ -5,4 +5,6 @@ export const cfg = {
         ? 'https://api-expensifly.vercel.app'
         : 'http://localhost:3000',
   },
+
+  key: 'ef8eb942-17a7-4aab-bba8-e0e6ea3a3629',
 };

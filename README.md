@@ -28,6 +28,10 @@ Future plans on expanding this project further and adding more functions:
 • Statistics about product prices;
 • Instructions on how to use the search tool.
 
+### Make account system.
+
+• People that have accounts can change main products items that are calculated in each shop. They can add, delete products.
+
 ### Add an option to insert items to a shopping cart:
 
 • Calculate full price;

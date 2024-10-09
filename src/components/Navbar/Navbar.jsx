@@ -36,19 +36,18 @@ function Navbar() {
     <div className="default-div p-4 navbar">
       <h2 className="default-text navbar-title mb-0">Price it</h2>
       <NavLink
-        to="/profile"
-        className={'underline-button non-styled-item default-text'}
-      >
-        {isMobile ? '' : 'Profile'}
-        <FontAwesomeIcon className="ps-2" icon={faUser} />
-      </NavLink>
-
-      <NavLink
         to="/search_tool"
         className={'underline-button non-styled-item default-text'}
       >
         {isMobile ? '' : 'Search'}
         <FontAwesomeIcon className="ps-2" icon={faMagnifyingGlass} />
+      </NavLink>
+      <NavLink
+        to="/profile"
+        className={'underline-button non-styled-item default-text'}
+      >
+        {isMobile ? '' : 'Profile'}
+        <FontAwesomeIcon className="ps-2" icon={faUser} />
       </NavLink>
       <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
     </div>
