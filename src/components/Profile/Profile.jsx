@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
+// components
+import LoggedInProfile from '../LogedInProfile/LoggedInProfile';
+
 import './profile.scss';
 
 function Profile() {
@@ -85,7 +88,7 @@ function Profile() {
           </div>
         </div>
       ) : (
-        <h2>Welcome</h2>
+        <LoggedInProfile />
       )}
     </div>
   );
