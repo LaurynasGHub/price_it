@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoggedInProfile() {
+function LoggedInProfile({ userId }) {
   //
   // TODO
   // Get profile id
@@ -10,7 +10,11 @@ function LoggedInProfile() {
   // Most searched items for account
   // Something more
   //
-  return <div className="default-div default-text m-4">loggedInProfile</div>;
+  return (
+    <div className="default-div default-text m-4">
+      loggedInProfile, {userId}
+    </div>
+  );
 }
 
 export default LoggedInProfile;

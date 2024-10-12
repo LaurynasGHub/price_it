@@ -13,6 +13,7 @@ function Profile() {
   const [loading, setLoading] = useState();
   const [logInError, setLogInError] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userID, setUserID] = useState();
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ function Profile() {
       } else {
         setLogInError('');
         const user = await response.json();
-        console.log('successfully logged in', user);
+        setUserID(user);
         setLoggedIn(true);
       }
     } catch (error) {
@@ -88,7 +89,7 @@ function Profile() {
           </div>
         </div>
       ) : (
-        <LoggedInProfile />
+        <LoggedInProfile userId={userID} />
       )}
     </div>
   );
