@@ -42,6 +42,10 @@ function Profile() {
         setLogInError('');
         const user = await response.json();
         setUserID(user);
+        //
+        // TODO
+        // Add logged in to cookies, so it would remain
+        //
         setLoggedIn(true);
       }
     } catch (error) {
