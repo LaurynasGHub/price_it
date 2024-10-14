@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
+// hooks
+import useLoggedIn from '../../hooks/useLoggedIn';
+
 // components
 import LoggedInProfile from '../LogedInProfile/LoggedInProfile';
 
@@ -10,13 +13,11 @@ import './profile.scss';
 function Profile() {
   const getPassword = useRef();
   const getUsername = useRef();
+
+  const [loggedIn, setLoggedIn] = useLoggedIn();
   const [loading, setLoading] = useState();
   const [logInError, setLogInError] = useState();
-  const [userID, setUserID] = useState();
-
-  const [loggedIn, setLoggedIn] = useState(
-    window.localStorage.getItem('loggedIn')
-  );
+  const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -60,6 +61,13 @@ function Profile() {
     }
   };
 
+  const handleLogOut = () => {
+    setLoggedIn(false);
+    setUserID('');
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userID');
+  };
+
   return (
     <div>
       {!loggedIn ? (
@@ -98,7 +106,7 @@ function Profile() {
           </div>
         </div>
       ) : (
-        <LoggedInProfile userId={localStorage.getItem('userID')} />
+        <LoggedInProfile userId={userID} onLogOut={handleLogOut} />
       )}
     </div>
   );

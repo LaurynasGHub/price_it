@@ -1,9 +1,13 @@
 import React from 'react';
 
-function LoggedInProfile({ userId }) {
+// hooks
+import useLoggedIn from '../../hooks/useLoggedIn';
+
+function LoggedInProfile({ userId, onLogOut }) {
+  const [loggedIn, setLoggedIn] = useLoggedIn();
+
   //
   // TODO
-  // Get profile id
   // Get profile options by profile id from backend
   // Profile options:
   // Main items (items that are added to the cart, otherwise some default items)
@@ -13,6 +17,7 @@ function LoggedInProfile({ userId }) {
   return (
     <div className="default-div default-text m-4">
       loggedInProfile, {userId}
+      <button onClick={() => onLogOut()}>Logout</button>
     </div>
   );
 }

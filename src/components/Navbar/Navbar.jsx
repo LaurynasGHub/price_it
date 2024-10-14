@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 import useLocalStorage from 'use-local-storage';
 import { NavLink } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
 // components
 import Toggler from '../Toggler/Toggler';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './navbar.scss';
 
 function Navbar() {
   const preference = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [isDark, setIsDark] = useLocalStorage('isDark', preference);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
