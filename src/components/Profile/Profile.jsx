@@ -12,8 +12,11 @@ function Profile() {
   const getUsername = useRef();
   const [loading, setLoading] = useState();
   const [logInError, setLogInError] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
   const [userID, setUserID] = useState();
+
+  const [loggedIn, setLoggedIn] = useState(
+    window.localStorage.getItem('loggedIn')
+  );
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -28,8 +31,6 @@ function Profile() {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',
-
-          Authorization: 'Bearer token',
         },
 
         body: JSON.stringify({ username, password }),
@@ -40,12 +41,16 @@ function Profile() {
         throw new Error('username or password is incorrect');
       } else {
         setLogInError('');
+
         const user = await response.json();
+
         setUserID(user);
-        //
-        // TODO
-        // Add logged in to cookies, so it would remain
-        //
+
+        // add logged in status to localStorage
+        localStorage.setItem('loggedIn', 'true');
+        // add userID to localStorage
+        localStorage.setItem('userID', user);
+
         setLoggedIn(true);
       }
     } catch (error) {
@@ -93,7 +98,7 @@ function Profile() {
           </div>
         </div>
       ) : (
-        <LoggedInProfile userId={userID} />
+        <LoggedInProfile userId={localStorage.getItem('userID')} />
       )}
     </div>
   );
