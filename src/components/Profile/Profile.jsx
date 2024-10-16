@@ -7,6 +7,7 @@ import useLoggedIn from '../../hooks/useLoggedIn';
 
 // components
 import LoggedInProfile from '../LogedInProfile/LoggedInProfile';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 import './profile.scss';
 
@@ -17,6 +18,7 @@ function Profile() {
   const [loggedIn, setLoggedIn] = useLoggedIn();
   const [loading, setLoading] = useState();
   const [logInError, setLogInError] = useState();
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
 
   const handleLogIn = async (e) => {
@@ -99,10 +101,21 @@ function Profile() {
             </button>
           </div>
           <div className="register-div">
-            <p className="mb-0">Not a member yet?</p>
-            <button className="underline-button default-text non-styled-item">
-              Register
-            </button>
+            {!showRegisterForm ? (
+              <div className="d-inline-flex">
+                <p className="mb-0">Not a member yet?</p>
+                <button
+                  className="underline-button default-text non-styled-item"
+                  onClick={() => setShowRegisterForm(true)}
+                >
+                  Register
+                </button>
+              </div>
+            ) : (
+              <div>
+                <RegisterForm />
+              </div>
+            )}
           </div>
         </div>
       ) : (
