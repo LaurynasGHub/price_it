@@ -112,14 +112,16 @@ function Profile() {
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="mt-5">
                 <RegisterForm />
               </div>
             )}
           </div>
         </div>
       ) : (
-        <LoggedInProfile userId={userID} onLogOut={handleLogOut} />
+        <div>
+          <LoggedInProfile userId={userID} onLogOut={handleLogOut} />
+        </div>
       )}
     </div>
   );

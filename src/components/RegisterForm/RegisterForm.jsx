@@ -47,7 +47,7 @@ function RegisterForm() {
   return (
     <div className="default-div default-text">
       <form>
-        <p className="">PLease enter your desired username:</p>
+        <p className="">Please enter your desired username:</p>
         <input
           type="text"
           id="userName"
