@@ -5,7 +5,6 @@ import useLoggedIn from '../../hooks/useLoggedIn';
 
 function LoggedInProfile({ userId, onLogOut }) {
   const [loggedIn, setLoggedIn] = useLoggedIn();
-
   //
   // TODO
   // Get profile options by profile id from backend

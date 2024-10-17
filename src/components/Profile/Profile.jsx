@@ -6,7 +6,7 @@ import { cfg } from '../../cfg/cfg';
 import useLoggedIn from '../../hooks/useLoggedIn';
 
 // components
-import LoggedInProfile from '../LogedInProfile/LoggedInProfile';
+import LoggedInProfile from '../LoggedInProfile/LoggedInProfile';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 import './profile.scss';
@@ -79,7 +79,7 @@ function Profile() {
               type="text"
               id="userName"
               placeholder="user name"
-              className="profile-input p-2 default-text"
+              className="underline-input p-2 default-text"
               ref={getUsername}
             ></input>
             <input
@@ -87,7 +87,7 @@ function Profile() {
               id="password"
               placeholder="password"
               autoComplete="on"
-              className="profile-input p-2 default-text"
+              className="underline-input p-2 default-text"
               ref={getPassword}
             ></input>
           </form>

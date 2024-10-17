@@ -38,6 +38,14 @@
   align-items: center;
 }
 
+.underline-input {
+  background: none;
+  border: none;
+  text-decoration: none;
+
+  border-bottom: 0.05rem solid var(--primary-border-color);
+}
+
 .hideOnResize {
   @media only screen and (max-width: 900px) {
     display: none;
