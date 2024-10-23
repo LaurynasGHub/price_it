@@ -4,16 +4,9 @@ import { cfg } from '../../cfg/cfg';
 
 // components
 import OptionCard from '../OptionCard/OptionCard';
+import Popover from '../Popover/Popover';
 
 function LoggedInProfile({ userId, onLogOut }) {
-  //
-  // TODO
-  // Get profile options by profile id from backend
-  // Profile options:
-  // Main items (items that are added to the cart, otherwise some default items)
-  // Most searched items for account
-  // Something more
-  //
   const [profileOptions, setProfileOptions] = useState([]);
   const [userName, setUserName] = useState('');
 
@@ -76,6 +69,8 @@ function LoggedInProfile({ userId, onLogOut }) {
     getUserName();
   }, []);
 
+  const popOverText = `These are your main items. They are used tocalculate the cost of the main products cart. If You don't provide any, the default are used.`;
+
   return (
     <div className="default-div default-text m-4">
       Hello {userName}
@@ -86,15 +81,23 @@ function LoggedInProfile({ userId, onLogOut }) {
         Logout
       </button>
       <div>
-        <p>Profile options</p>
-        <p>Main items</p>
+        <h5>Main items:</h5>
+        <Popover buttonText={'Info'} text={popOverText} />
         {profileOptions.length > 0 ? (
-          profileOptions.map((item) => <OptionCard option={item} />)
+          profileOptions.map((item) => <OptionCard option={item} key={item} />)
         ) : (
           <p>No options</p>
         )}
       </div>
-      <button onClick={() => getProfileOptions()}>Refresh options</button>
+      <button className="non-styled-item underline-button default-text">
+        Add option
+      </button>
+      <button
+        className="non-styled-item underline-button default-text"
+        onClick={() => getProfileOptions()}
+      >
+        Refresh options
+      </button>
     </div>
   );
 }
