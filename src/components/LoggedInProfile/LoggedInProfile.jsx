@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
+// components
+import OptionCard from '../OptionCard/OptionCard';
+
 function LoggedInProfile({ userId, onLogOut }) {
   //
   // TODO
@@ -12,10 +15,11 @@ function LoggedInProfile({ userId, onLogOut }) {
   // Something more
   //
   const [profileOptions, setProfileOptions] = useState([]);
+  const [userName, setUserName] = useState('');
 
   const getProfileOptions = async () => {
     try {
-      const response = await fetch(`${cfg.API.HOST}/options/${userId}`, {
+      const response = await fetch(`${cfg.API.HOST}/options?id=${userId}`, {
         method: 'GET',
         headers: {
           'Content-type': 'Application/json',
@@ -38,24 +42,57 @@ function LoggedInProfile({ userId, onLogOut }) {
     }
   };
 
+  const getUserName = async () => {
+    setUserName('Loading...');
+    try {
+      const response = await fetch(
+        `${cfg.API.HOST}/user/username?id=${userId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'Application/json',
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      if (response === '') {
+        throw new Error('There are no user with such id');
+      }
+
+      const username = await response.json();
+
+      setUserName(username);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     getProfileOptions();
+    getUserName();
   }, []);
 
   return (
     <div className="default-div default-text m-4">
-      loggedInProfile, {userId}
-      <button onClick={() => onLogOut()}>Logout</button>
+      Hello {userName}
+      <button
+        className="non-styled-item underline-button default-text p-2 m-2"
+        onClick={() => onLogOut()}
+      >
+        Logout
+      </button>
       <div>
         <p>Profile options</p>
         <p>Main items</p>
-        <div>
-          {profileOptions.length > 0 ? (
-            profileOptions.map((item) => <p key={item.name}>{item}</p>)
-          ) : (
-            <p>No options</p>
-          )}
-        </div>
+        {profileOptions.length > 0 ? (
+          profileOptions.map((item) => <OptionCard option={item} />)
+        ) : (
+          <p>No options</p>
+        )}
       </div>
       <button onClick={() => getProfileOptions()}>Refresh options</button>
     </div>
