@@ -4,11 +4,14 @@ import { cfg } from '../../cfg/cfg';
 
 // components
 import OptionCard from '../OptionCard/OptionCard';
-import Popover from '../Popover/Popover';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 function LoggedInProfile({ userId, onLogOut }) {
   const [profileOptions, setProfileOptions] = useState([]);
   const [userName, setUserName] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const getProfileOptions = async () => {
     try {
@@ -69,7 +72,7 @@ function LoggedInProfile({ userId, onLogOut }) {
     getUserName();
   }, []);
 
-  const popOverText = `These are your main items. They are used tocalculate the cost of the main products cart. If You don't provide any, the default are used.`;
+  const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;
 
   return (
     <div className="default-div default-text m-4">
@@ -81,8 +84,18 @@ function LoggedInProfile({ userId, onLogOut }) {
         Logout
       </button>
       <div>
-        <h5>Main items:</h5>
-        <Popover buttonText={'Info'} text={popOverText} />
+        <div className="d-flex flex-column">
+          <div className="d-flex">
+            <h5 className="">Main items:</h5>
+            <button
+              onClick={() => setShowPopup(!showPopup)}
+              className="non-styled-item default-text"
+            >
+              <FontAwesomeIcon className="mb-1" icon={faCircleInfo} />
+            </button>
+          </div>
+          {showPopup ? <p className="info-text">{popOverText}</p> : null}
+        </div>
         {profileOptions.length > 0 ? (
           profileOptions.map((item) => <OptionCard option={item} key={item} />)
         ) : (
