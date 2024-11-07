@@ -15,22 +15,32 @@ function Main() {
   const [searchResults, setSearchResults] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('No results yet');
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
 
   async function getScraperResults() {
-    const response = await fetch(
-      `${cfg.API.HOST}/scrapers/results?searchTerm=${searchValue}`,
-      {
-        method: 'GET',
-      }
-    );
+    if (searchValue === '') {
+      setErrorMessage('Please provide something to search');
+      return;
+    }
 
-    const result = await response.json();
+    try {
+      const response = await fetch(
+        `${cfg.API.HOST}/scrapers/results?searchTerm=${searchValue}`,
+        {
+          method: 'GET',
+        }
+      );
 
-    return result;
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
+    }
   }
 
   async function getSearchResults() {
@@ -51,7 +61,7 @@ function Main() {
             Welcome to Price It! Enter search term for which you would like to
             know the price. Search term <u>has to be in lithuanian</u>. If you
             would like more specific results enter more search terms. I.e.:
-            duona Toste.
+            "duona Toste".
           </p>
         </div>
       </div>
@@ -71,7 +81,7 @@ function Main() {
                 {loading ? (
                   <div className="loader pb-3">...</div>
                 ) : (
-                  <p className="custom-border-bottom p-2">No results yet</p>
+                  <p className="custom-border-bottom p-2">{errorMessage}</p>
                 )}
               </div>
             ) : searchResults.barbora?.products.length > 0 ||
