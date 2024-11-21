@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { cfg } from '../../cfg/cfg';
 
 // components
-import OptionCard from '../OptionCard/OptionCard';
+import OptionCards from '../OptionCards/OptionCards';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -97,7 +97,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           {showPopup ? <p className="info-text">{popOverText}</p> : null}
         </div>
         {profileOptions.length > 0 ? (
-          profileOptions.map((item) => <OptionCard option={item} key={item} />)
+          OptionCards({ options: profileOptions })
         ) : (
           <p>No options</p>
         )}
