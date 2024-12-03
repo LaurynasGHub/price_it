@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -12,6 +12,7 @@ function LoggedInProfile({ userId, onLogOut }) {
   const [profileOptions, setProfileOptions] = useState([]);
   const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const getProduct = useRef();
 
   const getProfileOptions = async () => {
     try {
@@ -20,6 +21,36 @@ function LoggedInProfile({ userId, onLogOut }) {
         headers: {
           'Content-type': 'Application/json',
         },
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      if (response === '') {
+        throw new Error('There are no options');
+      }
+
+      const options = await response.json();
+
+      setProfileOptions(options.mainProducts);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const addNewOption = async () => {
+    const product = getProduct.current.value;
+    console.log(product);
+
+    try {
+      const response = await fetch(`${cfg.API.HOST}/options/create`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'Application/json',
+        },
+
+        body: JSON.stringify({ userID: userId, product: product }),
       });
 
       if (!response.ok) {
@@ -102,9 +133,21 @@ function LoggedInProfile({ userId, onLogOut }) {
           <p>No options</p>
         )}
       </div>
-      <button className="non-styled-item underline-button default-text">
-        Add option
-      </button>
+      <div className="my-4">
+        <input
+          type="text"
+          id="option"
+          placeholder="New option"
+          className="non-styled-item border-bottom m-2 default-text"
+          ref={getProduct}
+        ></input>
+        <button
+          className="non-styled-item underline-button default-text"
+          onClick={() => addNewOption()}
+        >
+          Add option
+        </button>
+      </div>
       <button
         className="non-styled-item underline-button default-text"
         onClick={() => getProfileOptions()}

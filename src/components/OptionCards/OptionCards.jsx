@@ -1,13 +1,15 @@
 import React from 'react';
 
-function OptionCard({ options }) {
+function OptionCards({ options }) {
   return (
-    <div className="default-div default-text option-card d-flex">
+    <div className="default-div default-text option-card d-flex custom-border rounded p-2">
       {options.map((item) => (
-        <p className="custom-border-bottom me-2 p-1">{item}</p>
+        <p className="custom-border-bottom me-2 p-1" key={item}>
+          {item}
+        </p>
       ))}
     </div>
   );
 }
 
-export default OptionCard;
+export default OptionCards;
