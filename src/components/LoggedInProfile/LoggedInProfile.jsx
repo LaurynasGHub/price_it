@@ -40,6 +40,10 @@ function LoggedInProfile({ userId, onLogOut }) {
   };
 
   const addNewOption = async () => {
+    //
+    // TODO
+    // check if input is not empty
+    //
     const product = getProduct.current.value;
     console.log(product);
 
@@ -57,12 +61,9 @@ function LoggedInProfile({ userId, onLogOut }) {
         throw new Error('Something went wrong');
       }
 
-      if (response === '') {
-        throw new Error('There are no options');
-      }
-
       const options = await response.json();
 
+      // this part updates the options screen and rerenders
       setProfileOptions(options.mainProducts);
     } catch (error) {
       console.log(error.message);
