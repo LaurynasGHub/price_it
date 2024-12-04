@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 // components
 import SearchBar from '../SearchBar/SearchBar';
@@ -6,16 +7,19 @@ import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
+import LoaderErrorWindow from '../LoaderErrorWindow/LoaderErrorWindow';
 
 import { cfg } from '../../cfg/cfg';
 
 import './main.scss';
 
 function Main() {
-  const [searchResults, setSearchResults] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+  const [loaderError, setLoaderError] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -52,6 +56,10 @@ function Main() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    searchData.length < 1 ? setLoaderError(true) : setLoaderError(false);
+  }, [searchData]);
 
   return (
     <div className="container-fluid pb-2">
@@ -121,8 +129,9 @@ function Main() {
           </div>
         </div>
         <div className="col-md-4">
-          <MostSearchedItems searchResults={searchResults} />
+          <MostSearchedItems />
           <CostOfMainItemsCart />
+          {loaderError ? <LoaderErrorWindow /> : null}
         </div>
       </div>
     </div>

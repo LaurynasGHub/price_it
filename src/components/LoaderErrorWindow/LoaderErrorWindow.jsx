@@ -4,6 +4,7 @@ import { AppContext } from '../../context/AppContext';
 function MostSearchedItems() {
   const { searchData, setSearchData } = useContext(AppContext);
   const [isMobile, setIsMobile] = useState(false);
+  const [loaderError, setLoaderError] = useState(false);
 
   useEffect(() => {
     //if window size is below 600px gives true
@@ -21,6 +22,17 @@ function MostSearchedItems() {
     };
   }, []);
 
+  const emptyDataListener = () => {
+    if (searchData.length < 1) {
+      setLoaderError(true);
+      // setLoaderErrorText('Server may be offline');
+    }
+  };
+
+  useEffect(() => {
+    emptyDataListener();
+  }, [searchData]);
+
   return (
     <div
       className={
@@ -29,16 +41,7 @@ function MostSearchedItems() {
           : 'default-div custom-border rounded p-3 my-3 default-text'
       }
     >
-      <h5>Most popular searches:</h5>
-      {searchData.length < 1 ? (
-        <div className="h-100 d-flex align-items-center justify-content-center">
-          <div className="loader">...</div>
-        </div>
-      ) : (
-        searchData.map((item) => (
-          <li key={item.searchTerm}>{item.searchTerm}</li>
-        ))
-      )}
+      <h5>Server may be offline</h5>
     </div>
   );
 }
