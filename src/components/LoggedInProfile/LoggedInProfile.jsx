@@ -12,6 +12,7 @@ function LoggedInProfile({ userId, onLogOut }) {
   const [profileOptions, setProfileOptions] = useState([]);
   const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [optionText, setOptionText] = useState('New option');
   const getProduct = useRef();
 
   const getProfileOptions = async () => {
@@ -40,10 +41,14 @@ function LoggedInProfile({ userId, onLogOut }) {
   };
 
   const addNewOption = async () => {
-    //
-    // TODO
-    // check if input is not empty
-    //
+    if (getProduct.current.value === '') {
+      setOptionText(`Input can't be empty!`);
+      setTimeout(() => {
+        setOptionText('New option');
+      }, 3000);
+      return;
+    }
+
     const product = getProduct.current.value;
     console.log(product);
 
@@ -55,6 +60,30 @@ function LoggedInProfile({ userId, onLogOut }) {
         },
 
         body: JSON.stringify({ userID: userId, product: product }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      const options = await response.json();
+
+      // this part updates the options screen and rerenders
+      setProfileOptions(options.mainProducts);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const deleteOption = async (option) => {
+    try {
+      const response = await fetch(`${cfg.API.HOST}/options/delete`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'Application/json',
+        },
+
+        body: JSON.stringify({ userID: userId, product: option }),
       });
 
       if (!response.ok) {
@@ -129,7 +158,10 @@ function LoggedInProfile({ userId, onLogOut }) {
           {showPopup ? <p className="info-text">{popOverText}</p> : null}
         </div>
         {profileOptions.length > 0 ? (
-          OptionCards({ options: profileOptions })
+          OptionCards({
+            options: profileOptions,
+            deleteOptionFunction: deleteOption,
+          })
         ) : (
           <p>No options</p>
         )}
@@ -138,8 +170,8 @@ function LoggedInProfile({ userId, onLogOut }) {
         <input
           type="text"
           id="option"
-          placeholder="New option"
-          className="non-styled-item border-bottom m-2 default-text"
+          placeholder={optionText}
+          className="non-styled-item border-bottom default-text"
           ref={getProduct}
         ></input>
         <button
