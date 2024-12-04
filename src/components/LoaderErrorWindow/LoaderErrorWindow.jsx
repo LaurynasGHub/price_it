@@ -22,17 +22,6 @@ function MostSearchedItems() {
     };
   }, []);
 
-  const emptyDataListener = () => {
-    if (searchData.length < 1) {
-      setLoaderError(true);
-      // setLoaderErrorText('Server may be offline');
-    }
-  };
-
-  useEffect(() => {
-    emptyDataListener();
-  }, [searchData]);
-
   return (
     <div
       className={
@@ -41,7 +30,7 @@ function MostSearchedItems() {
           : 'default-div custom-border rounded p-3 my-3 default-text'
       }
     >
-      <h5>Server may be offline</h5>
+      <h5 className="text-center text-danger">Server may be offline!</h5>
     </div>
   );
 }
