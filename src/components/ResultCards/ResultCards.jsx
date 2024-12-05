@@ -39,7 +39,7 @@ function ResultCards({ searchResults, shop }) {
           </div>
         </div>
         <div className="row">
-          <div className="col-9 col-sm-10 col-md-10">
+          <div className="col-6 col-sm-8 col-md-8">
             <p className="mb-2">
               <u>Name</u>
             </p>
@@ -52,12 +52,19 @@ function ResultCards({ searchResults, shop }) {
         </div>
       </div>
       {searchResults.length > 0 ? (
-        searchResults.map((item) => (
-          <ResultCard
-            key={`${item.name}${item.price}`}
-            title={item.name}
-            price={item.price}
-          />
+        searchResults.map((item, index) => (
+          <div>
+            <ResultCard
+              key={`${item.name}-${index}`}
+              title={item.name}
+              price={item.price}
+              product={{
+                name: item.name,
+                price: item.price,
+                shop: shop,
+              }}
+            />
+          </div>
         ))
       ) : (
         <p className="p-2">
