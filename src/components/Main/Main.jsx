@@ -7,7 +7,6 @@ import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
-import LoaderErrorWindow from '../LoaderErrorWindow/LoaderErrorWindow';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -19,7 +18,6 @@ function Main() {
   const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
-  const [loaderError, setLoaderError] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -56,10 +54,6 @@ function Main() {
 
     setLoading(false);
   }
-
-  useEffect(() => {
-    searchData.length < 1 ? setLoaderError(true) : setLoaderError(false);
-  }, [searchData]);
 
   return (
     <div className="container-fluid pb-2">
@@ -131,7 +125,6 @@ function Main() {
         <div className="col-md-4">
           <MostSearchedItems />
           <CostOfMainItemsCart />
-          {loaderError ? <LoaderErrorWindow /> : null}
         </div>
       </div>
     </div>
