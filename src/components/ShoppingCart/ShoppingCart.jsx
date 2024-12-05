@@ -1,8 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { useState, useEffect } from 'react';
 
-function MostSearchedItems() {
-  const { searchData, setSearchData } = useContext(AppContext);
+function ShoppingCart() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -29,18 +27,13 @@ function MostSearchedItems() {
           : 'default-div custom-border rounded p-3 my-3 default-text'
       }
     >
-      <h5>Most popular searches</h5>
-      {searchData.length < 1 ? (
-        <div className="h-100 d-flex align-items-center justify-content-center">
-          <div className="loader">...</div>
-        </div>
-      ) : (
-        searchData.map((item) => (
-          <li key={item.searchTerm}>{item.searchTerm}</li>
-        ))
-      )}
+      <h5>Shopping cart</h5>
+      <p>
+        Here you can add items to Your shopping cart from different shops. The
+        item name, price and shop is displayed
+      </p>
     </div>
   );
 }
 
-export default MostSearchedItems;
+export default ShoppingCart;

@@ -7,7 +7,7 @@ function MostSearchedItems() {
 
   return (
     <div className="default-div custom-border rounded p-3 my-3 default-text">
-      <h5>Cost of main products cart:</h5>
+      <h5>Cost of main products cart</h5>
       <p>
         Main products cart consists of the main everyday items: milk, bread,
         butter...

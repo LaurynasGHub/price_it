@@ -7,6 +7,7 @@ import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -125,6 +126,7 @@ function Main() {
         <div className="col-md-4">
           <MostSearchedItems />
           <CostOfMainItemsCart />
+          <ShoppingCart />
         </div>
       </div>
     </div>
