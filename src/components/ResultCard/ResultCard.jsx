@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 import './resultCard.scss';
 
@@ -6,9 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 function ResultCard({ title, price, product }) {
-  const addToCart = () => {
-    console.log(product);
-  };
+  const { handleAddToCart } = useContext(AppContext);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -21,7 +21,7 @@ function ResultCard({ title, price, product }) {
         <div className="col-3 col-sm-2 col-md-2">
           <button
             className="non-styled-item underline-button default-text"
-            onClick={() => addToCart()}
+            onClick={() => handleAddToCart(product)}
           >
             <FontAwesomeIcon icon={faCartShopping} />
           </button>

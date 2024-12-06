@@ -8,6 +8,13 @@ function AppContextProvider(props) {
   const [mainCartData, setMainCartData] = useState([]);
   const [mainCartPrices, setMainCartPrices] = useState([]);
 
+  const storedCartData = localStorage.getItem('cartData');
+  const initialCartData = localStorage.getItem('cartData')
+    ? JSON.parse(storedCartData)
+    : [];
+
+  const [cartData, setCartData] = useState(initialCartData);
+
   const fetchSearchData = async () => {
     try {
       const response = await fetch(`${cfg.API.HOST}/topSearches/results`);
@@ -46,12 +53,31 @@ function AppContextProvider(props) {
     }
   };
 
+  const handleAddToCart = (item) => {
+    setCartData((prevCartData) => [...prevCartData, item]);
+  };
+
+  const handleRemoveFromCart = (item) => {
+    const filteredCardData = cartData.filter(
+      (dataItem) => dataItem.title !== item.title
+    );
+
+    setCartData(filteredCardData);
+  };
+
+  const handleClearCart = () => {
+    setCartData(() => []);
+  };
   //   when page mounts gathers data from backend
   useEffect(() => {
     fetchSearchData();
     getMainCartData();
     getMainCartPrices();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }, [cartData]);
 
   return (
     <AppContext.Provider
@@ -62,6 +88,11 @@ function AppContextProvider(props) {
         setMainCartData,
         mainCartPrices,
         setMainCartPrices,
+        cartData,
+        setCartData,
+        handleAddToCart,
+        handleRemoveFromCart,
+        handleClearCart,
       }}
     >
       {props.children}

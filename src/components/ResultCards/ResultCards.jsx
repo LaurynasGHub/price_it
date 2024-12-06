@@ -53,9 +53,8 @@ function ResultCards({ searchResults, shop }) {
       </div>
       {searchResults.length > 0 ? (
         searchResults.map((item, index) => (
-          <div>
+          <div key={`${item.name}-${index}`}>
             <ResultCard
-              key={`${item.name}-${index}`}
               title={item.name}
               price={item.price}
               product={{

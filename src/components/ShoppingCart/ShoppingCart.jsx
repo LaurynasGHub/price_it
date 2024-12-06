@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 function ShoppingCart() {
+  const { cartData, handleClearCart } = useContext(AppContext);
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -32,6 +35,23 @@ function ShoppingCart() {
         Here you can add items to Your shopping cart from different shops. The
         item name, price and shop is displayed
       </p>
+      {cartData.length > 0 ? (
+        cartData.map((item, index) => (
+          <div key={index} className="d-flex">
+            <p className="small me-2 mb-1">{item.name}</p>
+            <p className="small me-2 mb-1">{item.shop}</p>
+            <p className="small me-2 mb-1">{item.price}</p>
+          </div>
+        ))
+      ) : (
+        <p>Your cart is empty</p>
+      )}
+      <button
+        className="non-styled-item underline-button default-text px-0"
+        onClick={() => handleClearCart()}
+      >
+        Clear cart
+      </button>
     </div>
   );
 }
