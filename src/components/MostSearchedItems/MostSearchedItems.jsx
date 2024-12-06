@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFire } from '@fortawesome/free-solid-svg-icons';
+
 function MostSearchedItems() {
   const { searchData, setSearchData } = useContext(AppContext);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,7 +32,10 @@ function MostSearchedItems() {
           : 'default-div custom-border rounded p-3 my-3 default-text'
       }
     >
-      <h5>Most popular searches</h5>
+      <div className="d-flex">
+        <h5>Most popular searches</h5>
+        <FontAwesomeIcon className="ms-2 mt-1" icon={faFire} />
+      </div>
       {searchData.length < 1 ? (
         <div className="h-100 d-flex align-items-center justify-content-center">
           <div className="loader">...</div>

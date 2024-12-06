@@ -1,16 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+
 function MostSearchedItems() {
   const { mainCartData, setMainCartData } = useContext(AppContext);
   const { mainCartPrices, setMainCartPrices } = useContext(AppContext);
 
   return (
     <div className="default-div custom-border rounded p-3 my-3 default-text">
-      <h5>Cost of main products cart</h5>
-      <p>
-        Main products cart consists of the main everyday items: milk, bread,
-        butter...
+      <div className="d-flex">
+        <h5>Cost of main products cart</h5>
+        <FontAwesomeIcon className="ms-2 mt-1" icon={faDollarSign} />
+      </div>
+      <p className="small">
+        Main products are items that You chose in the options, otherwise, the
+        default are used
       </p>
       {mainCartPrices.length < 1 ? (
         <div className="h-100 d-flex align-items-center justify-content-center">

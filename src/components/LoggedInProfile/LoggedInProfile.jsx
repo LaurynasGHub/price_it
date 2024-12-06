@@ -147,12 +147,12 @@ function LoggedInProfile({ userId, onLogOut }) {
       <div>
         <div className="d-flex flex-column">
           <div className="d-flex">
-            <h5 className="">Main items:</h5>
+            <h5 className="mb-3">Main items</h5>
             <button
               onClick={() => setShowPopup(!showPopup)}
               className="non-styled-item default-text"
             >
-              <FontAwesomeIcon className="mb-1" icon={faCircleInfo} />
+              <FontAwesomeIcon className="mb-2" icon={faCircleInfo} />
             </button>
           </div>
           {showPopup ? <p className="info-text">{popOverText}</p> : null}
@@ -175,7 +175,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           ref={getProduct}
         ></input>
         <button
-          className="non-styled-item underline-button default-text"
+          className="non-styled-item underline-button default-text ms-3"
           onClick={() => addNewOption()}
         >
           Add option
