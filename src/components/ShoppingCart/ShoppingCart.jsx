@@ -2,10 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { use } from 'react';
+import { faCartShopping, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 function ShoppingCart() {
-  const { cartData, handleClearCart } = useContext(AppContext);
+  const { cartData, handleClearCart, handleRemoveFromCart } =
+    useContext(AppContext);
 
   const [isMobile, setIsMobile] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -65,15 +66,23 @@ function ShoppingCart() {
       </p>
       {cartData.length > 0 ? (
         cartData.map((item, index) => (
-          <div key={index} className="row d-flex custom-border-bottom">
-            <div className="col-6 col-sm-8 col-md-8">
-              <p className="small me-2 mb-1">{item.name}</p>
+          <div key={index} className="row d-flex custom-border-bottom mb-2">
+            <div className="col-5 col-sm-6 col-md-6">
+              <p className="small mb-1">{item.name}</p>
             </div>
-            <div className="col-3 col-sm-2 col-md-2">
-              <p className="small me-2 mb-1">{item.shop}</p>
+            <div className="col-2 col-sm-2 col-md-2">
+              <p className="small mb-1">{item.shop}</p>
             </div>
-            <div className="col-3 col-sm-2 col-md-2">
-              <p className="small me-2 mb-1">{item.price} €</p>
+            <div className="col-3 col-sm-3 col-md-3">
+              <p className="small mb-1">{item.price} €</p>
+            </div>
+            <div className="col-2 col-sm-1 col-md-1">
+              <button
+                className="non-styled-item underline-button default-text"
+                onClick={() => handleRemoveFromCart(item)}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
             </div>
           </div>
         ))

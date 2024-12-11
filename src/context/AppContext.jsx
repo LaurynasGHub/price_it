@@ -59,7 +59,7 @@ function AppContextProvider(props) {
 
   const handleRemoveFromCart = (item) => {
     const filteredCardData = cartData.filter(
-      (dataItem) => dataItem.title !== item.title
+      (dataItem) => dataItem.name !== item.name
     );
 
     setCartData(filteredCardData);
