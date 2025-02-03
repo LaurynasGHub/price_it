@@ -15,9 +15,15 @@ Point of the project is to collect data from shops about product prices and then
 
 • Iki (LastMile) scraper. Completed ✅
 
-• Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible.
+• Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible. Atleast get their sales brochures.
 
-• Add loaders to cost of main cart items and most popular searches.
+• Add loaders to cost of main cart items and most popular searches. ✅
+
+• Add page for alcohol shops (Vynoteka, Bottlery etc.), get alcohol prices from these shops. Ask for confirmation that user is older that 20.
+
+• Add price checker - user can select products that interest them and the price checker follows the products prices. It notifies when product is on sale or gets to a certain price that is selected by a user. THIS FEATURE NEEDS A SERVER.
+
+• Add SALE page. Get all the brochures with sales, show what is on sale etc.
 
 ## Future planed updates:
 
@@ -26,15 +32,15 @@ Future plans on expanding this project further and adding more functions:
 ### Add more items to navbar:
 
 • Statistics about product prices;
-• Instructions on how to use the search tool.
+• Instructions on how to use the search tool. ✅
 
 ### Make account system.
 
-• People that have accounts can change main products items that are calculated in each shop. They can add, delete products.
+• People that have accounts can change main products items that are calculated in each shop. They can add, delete products. ✅
 
 ### Add an option to insert items to a shopping cart:
 
-• Calculate full price;
+• Calculate full price; ✅
 • Make different carts:
 • Cheapest;
 • Cheapest including gas;
@@ -70,7 +76,7 @@ Store products price history in server and add graphs/other info on how that pri
 
 ### Add product cart:
 
-Store products in a cart, show their prices and where to buy them.
+Store products in a cart, show their prices and where to buy them. ✅
 
 ### Add trip planner that plans trips to the store:
 

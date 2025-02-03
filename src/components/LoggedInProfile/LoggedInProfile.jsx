@@ -137,22 +137,24 @@ function LoggedInProfile({ userId, onLogOut }) {
 
   return (
     <div className="default-div default-text m-4">
-      Hello {userName}
-      <button
-        className="non-styled-item underline-button default-text p-2 m-2"
-        onClick={() => onLogOut()}
-      >
-        Logout
-      </button>
+      <div className="custom-border rounded p-2">
+        Hello {userName},
+        <button
+          className="non-styled-item underline-button default-text"
+          onClick={() => onLogOut()}
+        >
+          Logout
+        </button>
+      </div>
       <div>
         <div className="d-flex flex-column">
           <div className="d-flex">
-            <h5 className="mb-3">Main items</h5>
+            <h5 className="my-3">Main items</h5>
             <button
               onClick={() => setShowPopup(!showPopup)}
               className="non-styled-item default-text"
             >
-              <FontAwesomeIcon className="mb-2" icon={faCircleInfo} />
+              <FontAwesomeIcon className="my-3" icon={faCircleInfo} />
             </button>
           </div>
           {showPopup ? <p className="info-text">{popOverText}</p> : null}
