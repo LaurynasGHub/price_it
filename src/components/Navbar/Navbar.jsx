@@ -33,7 +33,18 @@ function Navbar() {
 
   return (
     <div className="default-div p-4 navbar">
-      <h2 className="default-text navbar-title mb-0">Price It</h2>
+      {isMobile ? (
+        <img
+          src="/images/Price_it_logo.png"
+          alt="price_it_logo"
+          width="10%"
+          height="10%"
+          className="rounded"
+        ></img>
+      ) : (
+        <h2 className="default-text navbar-title mb-0">Price It</h2>
+      )}
+
       <div className="navbar-items">
         <NavLink
           to="/search_tool"
