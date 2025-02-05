@@ -138,7 +138,7 @@ function LoggedInProfile({ userId, onLogOut }) {
   return (
     <div className="default-div default-text m-4">
       <div className="custom-border rounded p-2">
-        Hello {userName},
+        Hello, {userName}!
         <button
           className="non-styled-item underline-button default-text"
           onClick={() => onLogOut()}
@@ -168,7 +168,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           <p>No options</p>
         )}
       </div>
-      <div className="my-4">
+      <div className="my-4 custom-border rounded p-2">
         <input
           type="text"
           id="option"
@@ -182,13 +182,14 @@ function LoggedInProfile({ userId, onLogOut }) {
         >
           Add option
         </button>
+        {/* this button was used to test the option gathering from API */}
+        {/* <button
+          className="non-styled-item underline-button default-text"
+          onClick={() => getProfileOptions()}
+        >
+          Refresh options
+        </button> */}
       </div>
-      <button
-        className="non-styled-item underline-button default-text"
-        onClick={() => getProfileOptions()}
-      >
-        Refresh options
-      </button>
     </div>
   );
 }
