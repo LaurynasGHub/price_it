@@ -44,8 +44,6 @@ function AppContextProvider(props) {
 
   const getMainCartPrices = async () => {
     try {
-      const userID = localStorage.getItem('userID') || '';
-
       const response = await fetch(
         `${cfg.API.HOST}/mainItems/cart/results?id=${userID}`
       );
@@ -90,6 +88,16 @@ function AppContextProvider(props) {
 
   useEffect(() => {
     getMainCartPrices();
+  }, [userID]);
+
+  useEffect(() => {
+    if (userID) {
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('loggedIn', 'true');
+    } else {
+      localStorage.removeItem('userID');
+      localStorage.removeItem('loggedIn');
+    }
   }, [userID]);
 
   return (

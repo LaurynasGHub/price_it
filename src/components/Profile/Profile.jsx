@@ -49,12 +49,11 @@ function Profile() {
 
         const user = await response.json();
 
-        setUserID(user);
-
         // add logged in status to localStorage
         localStorage.setItem('loggedIn', 'true');
-        // add userID to localStorage
-        localStorage.setItem('userID', user);
+
+        // set userID using appContext
+        setUserID(user);
 
         setLoggedIn(true);
       }
