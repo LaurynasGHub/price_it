@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 function MostSearchedItems() {
-  const { mainCartData, setMainCartData } = useContext(AppContext);
   const { mainCartPrices, setMainCartPrices } = useContext(AppContext);
 
   return (

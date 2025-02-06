@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -10,6 +10,7 @@ import LoggedInProfile from '../LoggedInProfile/LoggedInProfile';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 import './profile.scss';
+import { AppContext } from '../../context/AppContext';
 
 function Profile() {
   const getPassword = useRef();
@@ -19,7 +20,8 @@ function Profile() {
   const [loading, setLoading] = useState();
   const [logInError, setLogInError] = useState();
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
+
+  const { userID, setUserID } = useContext(AppContext);
 
   const handleLogIn = async (e) => {
     e.preventDefault();

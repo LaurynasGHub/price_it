@@ -7,6 +7,7 @@ function AppContextProvider(props) {
   const [searchData, setSearchData] = useState([]);
   const [mainCartData, setMainCartData] = useState([]);
   const [mainCartPrices, setMainCartPrices] = useState([]);
+  const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
 
   const storedCartData = localStorage.getItem('cartData');
   const initialCartData = localStorage.getItem('cartData')
@@ -43,7 +44,15 @@ function AppContextProvider(props) {
 
   const getMainCartPrices = async () => {
     try {
-      const response = await fetch(`${cfg.API.HOST}/mainItems/cart/results`);
+      const userID = localStorage.getItem('userID') || '';
+
+      const response = await fetch(
+        `${cfg.API.HOST}/mainItems/cart/results?id=${userID}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
       const data = await response.json();
 
@@ -79,6 +88,10 @@ function AppContextProvider(props) {
     localStorage.setItem('cartData', JSON.stringify(cartData));
   }, [cartData]);
 
+  useEffect(() => {
+    getMainCartPrices();
+  }, [userID]);
+
   return (
     <AppContext.Provider
       value={{
@@ -90,6 +103,8 @@ function AppContextProvider(props) {
         setMainCartPrices,
         cartData,
         setCartData,
+        userID,
+        setUserID,
         handleAddToCart,
         handleRemoveFromCart,
         handleClearCart,
