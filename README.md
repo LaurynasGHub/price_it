@@ -5,6 +5,8 @@ Point of the project is to collect data from shops about product prices and then
 
 ## TODO List:
 
+• Add description why people should create profile in profile section.
+
 • When profile options change MCP doesn't recalculate and rerender, need to fix this.
 
 • Add page for alcohol shops (Vynoteka, Bottlery etc.), get alcohol prices from these shops. Ask for confirmation that user is older that 20.
