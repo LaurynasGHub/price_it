@@ -90,16 +90,6 @@ function AppContextProvider(props) {
     getMainCartPrices();
   }, [userID]);
 
-  useEffect(() => {
-    if (userID) {
-      localStorage.setItem('userID', userID);
-      localStorage.setItem('loggedIn', 'true');
-    } else {
-      localStorage.removeItem('userID');
-      localStorage.removeItem('loggedIn');
-    }
-  }, [userID]);
-
   return (
     <AppContext.Provider
       value={{
