@@ -10,38 +10,38 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from '../../context/AppContext';
 
 function LoggedInProfile({ userId, onLogOut }) {
-  const [profileOptions, setProfileOptions] = useState([]);
+  // const [profileOptions, setProfileOptions] = useState([]);
   const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [optionText, setOptionText] = useState('New option');
   const getProduct = useRef();
 
-  // const { profileOptions, setProfileOptions } = useContext(AppContext);
+  const { profileOptions, setProfileOptions } = useContext(AppContext);
 
-  const getProfileOptions = async () => {
-    try {
-      const response = await fetch(`${cfg.API.HOST}/options?id=${userId}`, {
-        method: 'GET',
-        headers: {
-          'Content-type': 'Application/json',
-        },
-      });
+  // const getProfileOptions = async () => {
+  //   try {
+  //     const response = await fetch(`${cfg.API.HOST}/options?id=${userId}`, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-type': 'Application/json',
+  //       },
+  //     });
 
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Something went wrong');
+  //     }
 
-      if (response === '') {
-        throw new Error('There are no options');
-      }
+  //     if (response === '') {
+  //       throw new Error('There are no options');
+  //     }
 
-      const options = await response.json();
+  //     const options = await response.json();
 
-      setProfileOptions(options.mainProducts);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //     setProfileOptions(options.mainProducts);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   const addNewOption = async () => {
     if (getProduct.current.value === '') {
@@ -133,7 +133,7 @@ function LoggedInProfile({ userId, onLogOut }) {
 
   useEffect(() => {
     getUserName();
-    getProfileOptions();
+    // getProfileOptions();
   }, []);
 
   const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;

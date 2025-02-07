@@ -111,6 +111,7 @@ function AppContextProvider(props) {
     fetchSearchData();
     getMainCartData();
     getMainCartPrices();
+    getProfileOptions();
   }, []);
 
   useEffect(() => {
@@ -119,7 +120,7 @@ function AppContextProvider(props) {
 
   useEffect(() => {
     getMainCartPrices();
-  }, [userID]);
+  }, [userID, profileOptions]);
 
   // useEffect(() => {
   //   console.log('Current searchData:', searchData);
