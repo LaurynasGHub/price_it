@@ -7,6 +7,7 @@ function AppContextProvider(props) {
   const [searchData, setSearchData] = useState([]);
   const [mainCartData, setMainCartData] = useState([]);
   const [mainCartPrices, setMainCartPrices] = useState([]);
+  const [profileOptions, setProfileOptions] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
 
   const storedCartData = localStorage.getItem('cartData');
@@ -20,11 +21,15 @@ function AppContextProvider(props) {
     try {
       const response = await fetch(`${cfg.API.HOST}/topSearches/results`);
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       setSearchData(data);
     } catch (error) {
-      console.log('Error:', error.message);
+      console.log('Error fetching search data:', error.message);
     }
   };
 
@@ -75,6 +80,32 @@ function AppContextProvider(props) {
   const handleClearCart = () => {
     setCartData(() => []);
   };
+
+  const getProfileOptions = async () => {
+    try {
+      const response = await fetch(`${cfg.API.HOST}/options?id=${userID}`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'Application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      if (response === '') {
+        throw new Error('There are no options');
+      }
+
+      const options = await response.json();
+
+      setProfileOptions(options.mainProducts);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   //   when page mounts gathers data from backend
   useEffect(() => {
     fetchSearchData();
@@ -91,14 +122,18 @@ function AppContextProvider(props) {
   }, [userID]);
 
   // useEffect(() => {
-  //   if (userID) {
-  //     localStorage.setItem('userID', userID);
-  //     localStorage.setItem('loggedIn', 'true');
-  //   } else {
-  //     localStorage.removeItem('userID');
-  //     localStorage.removeItem('loggedIn');
-  //   }
-  // }, [userID]);
+  //   console.log('Current searchData:', searchData);
+  // }, [searchData]);
+
+  useEffect(() => {
+    if (userID) {
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('loggedIn', 'true');
+    } else {
+      localStorage.removeItem('userID');
+      localStorage.removeItem('loggedIn');
+    }
+  }, [userID]);
 
   return (
     <AppContext.Provider
@@ -113,6 +148,8 @@ function AppContextProvider(props) {
         setCartData,
         userID,
         setUserID,
+        profileOptions,
+        setProfileOptions,
         handleAddToCart,
         handleRemoveFromCart,
         handleClearCart,

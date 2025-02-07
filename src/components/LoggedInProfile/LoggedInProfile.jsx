@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -7,6 +7,7 @@ import OptionCards from '../OptionCards/OptionCards';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { AppContext } from '../../context/AppContext';
 
 function LoggedInProfile({ userId, onLogOut }) {
   const [profileOptions, setProfileOptions] = useState([]);
@@ -14,6 +15,8 @@ function LoggedInProfile({ userId, onLogOut }) {
   const [showPopup, setShowPopup] = useState(false);
   const [optionText, setOptionText] = useState('New option');
   const getProduct = useRef();
+
+  // const { profileOptions, setProfileOptions } = useContext(AppContext);
 
   const getProfileOptions = async () => {
     try {
@@ -129,8 +132,8 @@ function LoggedInProfile({ userId, onLogOut }) {
   };
 
   useEffect(() => {
-    getProfileOptions();
     getUserName();
+    getProfileOptions();
   }, []);
 
   const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;
