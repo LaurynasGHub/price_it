@@ -9,6 +9,8 @@ Point of the project is to collect data from shops about product prices and then
 
 • Add age confirmation.
 
+• Add separate search frequency checker for alcohol.
+
 • Add price checker - user can select products that interest them and the price checker follows the products prices. It notifies when product is on sale or gets to a certain price that is selected by a user. THIS FEATURE NEEDS A SERVER.
 
 • Add SALE page. Get all the brochures with sales, show what is on sale etc.
