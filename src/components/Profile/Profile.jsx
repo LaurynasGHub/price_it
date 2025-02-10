@@ -113,8 +113,14 @@ function Profile() {
                 </button>
               </div>
             ) : (
-              <div className="mt-5">
+              <div>
                 <RegisterForm />
+                <button
+                  className="underline-button default-text non-styled-item mt-2"
+                  onClick={() => setShowRegisterForm(false)}
+                >
+                  Hide register form
+                </button>
               </div>
             )}
           </div>
