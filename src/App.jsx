@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main';
 import Profile from './components/Profile/Profile';
+import AlcoholMain from './components/AlcoholMain/AlcoholMain';
 
 import './app.scss';
 import './index.scss';
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/profile" element={<Profile />} />
         <Route path="/search_tool" element={<Main />} />
+        <Route path="/alcohol_search_tool" element={<AlcoholMain />} />
         <Route path="*" element={<Navigate to="/search_tool" />} />
       </Routes>
     </div>

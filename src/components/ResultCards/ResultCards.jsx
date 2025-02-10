@@ -19,6 +19,11 @@ function ResultCards({ searchResults, shop }) {
       case 'iki':
         imgPath = '/images/IKI_logo.png';
         break;
+
+      case 'vynoteka':
+        imgPath = '/images/vynoteka_logo.png';
+        break;
+
       default:
         break;
     }

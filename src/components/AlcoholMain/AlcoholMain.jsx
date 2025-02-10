@@ -11,9 +11,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 import { cfg } from '../../cfg/cfg';
 
-import './main.scss';
-
-function Main() {
+function AlcoholMain() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const { searchData, setSearchData } = useContext(AppContext);
@@ -32,7 +30,7 @@ function Main() {
 
     try {
       const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${searchValue}`,
+        `${cfg.API.HOST}/scrapers/shops/alcohol/results?searchTerm=${searchValue}`,
         {
           method: 'GET',
         }
@@ -61,10 +59,8 @@ function Main() {
       <div className="row">
         <div className="col-12 col-sm-12 col-md-12 default-div default-text">
           <p className="info-text">
-            Welcome to Price It! Enter search term for which you would like to
-            know the price. Search term <u>has to be in lithuanian</u>. If you
-            would like more specific results enter more search terms. I.e.:
-            "duona Toste".
+            Welcome to alcohol prices search. Here you can find alcohol prices
+            from different shops - Vynoteka etc.
           </p>
         </div>
       </div>
@@ -87,9 +83,7 @@ function Main() {
                   <p className="custom-border-bottom p-2">{errorMessage}</p>
                 )}
               </div>
-            ) : searchResults.barbora?.products.length > 0 ||
-              searchResults.rimi?.products.length > 0 ||
-              searchResults.lastMile?.products.length > 0 ? (
+            ) : searchResults.vynoteka?.products.length > 0 ? (
               <div className="default-div small">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
@@ -98,16 +92,8 @@ function Main() {
                 ) : (
                   <div className="default-div small">
                     <ResultCards
-                      searchResults={searchResults.barbora.products}
-                      shop={'maxima'}
-                    />
-                    <ResultCards
-                      searchResults={searchResults.rimi.products}
-                      shop={'rimi'}
-                    />
-                    <ResultCards
-                      searchResults={searchResults.lastMile.products}
-                      shop={'iki'}
+                      searchResults={searchResults.vynoteka.products}
+                      shop={'vynoteka'}
                     />
                   </div>
                 )}
@@ -133,4 +119,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default AlcoholMain;

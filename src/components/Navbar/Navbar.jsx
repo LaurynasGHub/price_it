@@ -6,7 +6,11 @@ import { NavLink } from 'react-router-dom';
 import Toggler from '../Toggler/Toggler';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faMagnifyingGlass,
+  faMartiniGlassCitrus,
+} from '@fortawesome/free-solid-svg-icons';
 
 import './navbar.scss';
 
@@ -57,12 +61,23 @@ function Navbar() {
           />
         </NavLink>
         <NavLink
+          to="/alcohol_search_tool"
+          className={'underline-button non-styled-item default-text p-2 me-4'}
+        >
+          {isMobile ? '' : 'Alcohol'}
+          <FontAwesomeIcon
+            className={isMobile ? '' : 'ms-2'}
+            icon={faMartiniGlassCitrus}
+          />
+        </NavLink>
+        <NavLink
           to="/profile"
           className={'underline-button non-styled-item default-text p-2 me-4'}
         >
           {isMobile ? '' : 'Profile'}
           <FontAwesomeIcon className={isMobile ? '' : 'ms-2'} icon={faUser} />
         </NavLink>
+
         <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
       </div>
     </div>
