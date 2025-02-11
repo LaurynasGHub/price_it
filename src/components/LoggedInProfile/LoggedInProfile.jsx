@@ -84,6 +84,8 @@ function LoggedInProfile({ userId, onLogOut }) {
         body: JSON.stringify({ userID: userId, product: product }),
       });
 
+      console.log(response);
+
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
@@ -93,7 +95,7 @@ function LoggedInProfile({ userId, onLogOut }) {
       // this part updates the options screen and rerenders
       setProfileOptions(options.mainProducts);
     } catch (error) {
-      setErrorText('Option already exists!');
+      setErrorText('Option already exists');
 
       setTimeout(() => {
         setErrorText('');
