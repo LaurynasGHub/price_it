@@ -1,5 +1,4 @@
-import { React, useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { React, useState } from 'react';
 
 // components
 import SearchBar from '../SearchBar/SearchBar';
@@ -16,7 +15,6 @@ import './main.scss';
 function Main() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
 

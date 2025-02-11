@@ -14,9 +14,27 @@ function LoggedInProfile({ userId, onLogOut }) {
   const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [optionText, setOptionText] = useState('New option');
+  const [isMobile, setIsMobile] = useState(false);
+  const [errorText, setErrorText] = useState('');
   const getProduct = useRef();
 
   const { profileOptions, setProfileOptions } = useContext(AppContext);
+
+  useEffect(() => {
+    //if window size is below 600px gives true
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+    // Remove event listener- prevents memory leaks
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // const getProfileOptions = async () => {
   //   try {
@@ -46,14 +64,15 @@ function LoggedInProfile({ userId, onLogOut }) {
   const addNewOption = async () => {
     if (getProduct.current.value === '') {
       setOptionText(`Input can't be empty!`);
+
       setTimeout(() => {
         setOptionText('New option');
       }, 3000);
+
       return;
     }
 
     const product = getProduct.current.value;
-    console.log(product);
 
     try {
       const response = await fetch(`${cfg.API.HOST}/options/create`, {
@@ -74,6 +93,12 @@ function LoggedInProfile({ userId, onLogOut }) {
       // this part updates the options screen and rerenders
       setProfileOptions(options.mainProducts);
     } catch (error) {
+      setErrorText('Option already exists!');
+
+      setTimeout(() => {
+        setErrorText('');
+      }, 3000);
+
       console.log(error.message);
     }
   };
@@ -171,7 +196,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           <p>No options</p>
         )}
       </div>
-      <div className="my-4 custom-border rounded p-2">
+      <div className="my-4 custom-border rounded p-2 d-flex flex-wrap">
         <input
           type="text"
           id="option"
@@ -185,6 +210,11 @@ function LoggedInProfile({ userId, onLogOut }) {
         >
           Add option
         </button>
+        {errorText ? (
+          <div className={isMobile ? 'mt-2 default-text' : 'ms-3 default-text'}>
+            <p className="mb-0">{errorText}</p>
+          </div>
+        ) : null}
         {/* this button was used to test the option gathering from API */}
         {/* <button
           className="non-styled-item underline-button default-text"
