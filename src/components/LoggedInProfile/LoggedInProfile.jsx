@@ -166,11 +166,11 @@ function LoggedInProfile({ userId, onLogOut }) {
   const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;
 
   return (
-    <div className="default-div default-text m-4">
-      <div className="custom-border rounded p-2">
-        Hello, {userName}!
+    <div className="m-4">
+      <div className="default-div default-text custom-border rounded p-2 d-flex">
+        <p>Hello, {userName}!</p>
         <button
-          className="non-styled-item underline-button default-text"
+          className="non-styled-item underline-button"
           onClick={() => onLogOut()}
         >
           Logout

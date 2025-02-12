@@ -59,6 +59,12 @@
   display: inline-block;
   position: relative;
 
+  color: var(--primary-text-color);
+  transition: color 250ms ease-in-out;
+
+  background-color: var(--background-color);
+  transition: background-color 250ms ease-in-out;
+
   &::after {
     content: '';
     position: absolute;
@@ -69,7 +75,7 @@
     left: 0;
     background-color: var(--button-underline-color);
     transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+    transition: 250ms ease-out;
   }
 
   &:hover::after {
