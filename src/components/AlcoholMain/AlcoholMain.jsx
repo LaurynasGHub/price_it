@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useContext } from 'react';
+import { React, useState, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 // components
@@ -14,7 +14,7 @@ import { cfg } from '../../cfg/cfg';
 function AlcoholMain() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const { searchData, setSearchData } = useContext(AppContext);
+  //   const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
 

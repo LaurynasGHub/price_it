@@ -124,6 +124,10 @@ function Profile() {
               </div>
             )}
           </div>
+          <div className="mt-2">
+            <p className="mb-0">Why should you register?</p>
+            <p className="mb-0">• Add your own search terms to the main cart</p>
+          </div>
         </div>
       ) : (
         <div>

@@ -5,6 +5,8 @@ Point of the project is to collect data from shops about product prices and then
 
 ## TODO List:
 
+• Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible. Atleast get their sales brochures.
+
 • Check if it's possible to add Bottlery for price checking.
 
 • Add age confirmation.
@@ -30,8 +32,6 @@ Point of the project is to collect data from shops about product prices and then
 • Rimi brings back 20 results when barbora returns 5. Fixed ✅
 
 • Iki (LastMile) scraper. Completed ✅
-
-• Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible. Atleast get their sales brochures.
 
 • Add loaders to cost of main cart items and most popular searches. ✅
 

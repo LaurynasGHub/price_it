@@ -15,5 +15,9 @@
 }
 
 .navbar-title {
-  font-family: Copperplate;
+  font-size: 2rem; /* Adjust size as needed */
+  font-weight: bold; /* Make it bold */
+
+  display: inline-block; /* Keep the background size compact */
+  font-family: Arial, sans-serif; /* Use a clean, bold font */
 }
