@@ -17,6 +17,8 @@ Point of the project is to collect data from shops about product prices and then
 
 • Add SALE page. Get all the brochures with sales, show what is on sale etc.
 
+• Add default items when no options are present. ✅
+
 • Add page for alcohol shops (Vynoteka, Bottlery etc.), get alcohol prices from these shops. Ask for confirmation for age confirmation. ✅
 
 • Add description why people should create profile in profile section. ✅

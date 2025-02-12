@@ -166,9 +166,9 @@ function LoggedInProfile({ userId, onLogOut }) {
   const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;
 
   return (
-    <div className="m-4">
-      <div className="default-div default-text custom-border rounded p-2 d-flex">
-        <p>Hello, {userName}!</p>
+    <div className="default-div default-text m-4">
+      <div className="custom-border rounded p-2 d-flex">
+        <p className="m-2">Hello, {userName}!</p>
         <button
           className="non-styled-item underline-button"
           onClick={() => onLogOut()}
@@ -179,7 +179,7 @@ function LoggedInProfile({ userId, onLogOut }) {
       <div>
         <div className="d-flex flex-column">
           <div className="d-flex">
-            <h5 className="my-3">Main items</h5>
+            <h5 className="my-3 ms-2">Main items</h5>
             <button
               onClick={() => setShowPopup(!showPopup)}
               className="non-styled-item default-text"
@@ -187,7 +187,7 @@ function LoggedInProfile({ userId, onLogOut }) {
               <FontAwesomeIcon className="my-3" icon={faCircleInfo} />
             </button>
           </div>
-          {showPopup ? <p className="info-text">{popOverText}</p> : null}
+          {showPopup ? <p className="info-text ms-2">{popOverText}</p> : null}
         </div>
         {profileOptions.length > 0 ? (
           OptionCards({
@@ -195,7 +195,7 @@ function LoggedInProfile({ userId, onLogOut }) {
             deleteOptionFunction: deleteOption,
           })
         ) : (
-          <p>No options</p>
+          <p className="ms-2">No options, the defaults are used.</p>
         )}
       </div>
       <div className="my-4 custom-border rounded p-2 d-flex flex-wrap">

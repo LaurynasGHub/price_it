@@ -10,6 +10,7 @@ import {
   faUser,
   faMagnifyingGlass,
   faMartiniGlassCitrus,
+  faBasketShopping,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './navbar.scss';
@@ -54,10 +55,10 @@ function Navbar() {
           to="/search_tool"
           className={'underline-button non-styled-item default-text p-2 me-4'}
         >
-          {isMobile ? '' : 'Search'}
+          {isMobile ? '' : 'Shops'}
           <FontAwesomeIcon
             className={isMobile ? '' : 'ms-2'}
-            icon={faMagnifyingGlass}
+            icon={faBasketShopping}
           />
         </NavLink>
         <NavLink
