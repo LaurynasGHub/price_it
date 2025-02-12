@@ -1,5 +1,4 @@
-import { React, useState, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { React, useState, useEffect } from 'react';
 
 // components
 import SearchBar from '../SearchBar/SearchBar';
@@ -12,11 +11,22 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { cfg } from '../../cfg/cfg';
 
 function AlcoholMain() {
-  const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   //   const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+
+  const [alcoholSearchResults, setAlcoholSearchResults] = useState(() => {
+    const storedResults = sessionStorage.getItem('alcoholSearchResults');
+    return storedResults ? JSON.parse(storedResults) : [];
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'alcoholSearchResults',
+      JSON.stringify(alcoholSearchResults)
+    );
+  }, [alcoholSearchResults]);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -49,7 +59,7 @@ function AlcoholMain() {
 
     const fetchResult = await getScraperResults();
 
-    setSearchResults(fetchResult);
+    setAlcoholSearchResults(fetchResult);
 
     setLoading(false);
   }
@@ -75,7 +85,7 @@ function AlcoholMain() {
       <div className="row mt-2">
         <div className="col-md-8">
           <div className="default-div mt-2 default-text">
-            {!searchResults ? (
+            {!alcoholSearchResults ? (
               <div className="h-100 d-flex align-items-center justify-content-center">
                 {loading ? (
                   <div className="loader pb-3">...</div>
@@ -83,7 +93,7 @@ function AlcoholMain() {
                   <p className="custom-border-bottom p-2">{errorMessage}</p>
                 )}
               </div>
-            ) : searchResults.vynoteka?.products.length > 0 ? (
+            ) : alcoholSearchResults.vynoteka?.products.length > 0 ? (
               <div className="default-div small">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
@@ -92,7 +102,7 @@ function AlcoholMain() {
                 ) : (
                   <div className="default-div small">
                     <ResultCards
-                      searchResults={searchResults.vynoteka.products}
+                      searchResults={alcoholSearchResults.vynoteka.products}
                       shop={'vynoteka'}
                     />
                   </div>

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 
 // components
 import SearchBar from '../SearchBar/SearchBar';
@@ -13,10 +13,19 @@ import { cfg } from '../../cfg/cfg';
 import './main.scss';
 
 function Main() {
-  const [searchResults, setSearchResults] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+
+  const [searchResults, setSearchResults] = useState(() => {
+    const storedResults = sessionStorage.getItem('searchResults');
+    return storedResults ? JSON.parse(storedResults) : [];
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('searchResults', JSON.stringify(searchResults));
+  }, [searchResults]);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
