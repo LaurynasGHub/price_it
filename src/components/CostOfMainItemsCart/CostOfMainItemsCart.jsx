@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 function MostSearchedItems() {
-  const { mainCartPrices, setMainCartPrices } = useContext(AppContext);
+  const { mainCartPrices } = useContext(AppContext);
 
   return (
     <div className="default-div custom-border rounded p-3 my-3 default-text">

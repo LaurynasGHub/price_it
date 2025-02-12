@@ -18,7 +18,7 @@ function LoggedInProfile({ userId, onLogOut }) {
   const [errorText, setErrorText] = useState('');
   const getProduct = useRef();
 
-  const { profileOptions, setProfileOptions } = useContext(AppContext);
+  const { profileOptions, setProfileOptions, userID } = useContext(AppContext);
 
   useEffect(() => {
     //if window size is below 600px gives true
@@ -81,7 +81,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           'Content-type': 'Application/json',
         },
 
-        body: JSON.stringify({ userID: userId, product: product }),
+        body: JSON.stringify({ userID: userID, product: product }),
       });
 
       console.log(response);
