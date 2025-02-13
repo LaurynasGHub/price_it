@@ -43,7 +43,7 @@ function Profile() {
 
       if (!response.ok) {
         setLogInError('username or password is incorrect');
-        throw new Error('username or password is incorrect');
+        // throw new Error('username or password is incorrect');
       } else {
         setLogInError('');
 
