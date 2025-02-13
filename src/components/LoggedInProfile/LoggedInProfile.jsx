@@ -84,7 +84,7 @@ function LoggedInProfile({ userId, onLogOut }) {
         body: JSON.stringify({ userID: userID, product: product }),
       });
 
-      console.log(response);
+      // console.log(response);
 
       if (!response.ok) {
         throw new Error('Something went wrong');
