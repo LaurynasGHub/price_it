@@ -5,6 +5,8 @@ Point of the project is to collect data from shops about product prices and then
 
 ## TODO List:
 
+• Add descriptions to profile page, move how to use app there.
+
 • Add loader when logging in profile.
 
 • Work on API- it's slow. Maybe remove something so it is fetched only when necessary.
