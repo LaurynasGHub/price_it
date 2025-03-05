@@ -63,10 +63,10 @@ function AlcoholMain() {
     <div className="container-fluid pb-2">
       <div className="row">
         <div className="col-12 col-sm-12 col-md-12 default-div default-text">
-          <p className="info-text">
+          {/* <p className="info-text">
             Welcome to alcohol prices search. Here you can find alcohol prices
             from different shops - Vynoteka etc.
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="row">

@@ -12,8 +12,6 @@ import { cfg } from '../../cfg/cfg';
 import './main.scss';
 
 function Main() {
-  // const [searchResults, setSearchResults] = useState([]);
-  // const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
 
@@ -63,18 +61,17 @@ function Main() {
   return (
     <div className="container-fluid pb-2">
       <div className="row">
-        <div className="col-12 col-sm-12 col-md-12 default-div default-text">
+        {/* <div className="col-12 col-sm-12 col-md-12 default-div default-text">
           <p className="info-text">
             Welcome to Price It! Enter search term for which you would like to
             know the price. Search term <u>has to be in lithuanian</u>. If you
             would like more specific results enter more search terms. I.e.:
             "duona Toste".
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="row">
         <div className="col-8 col-sm-10 col-md-10 search-bar">
-          {/* <SearchBar handleInputChange={handleInputChange} /> */}
           <input
             className="default-div custom-border rounded p-2 default-text w-100"
             placeholder="enter product name"
