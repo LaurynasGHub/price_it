@@ -10,13 +10,9 @@ function MostSearchedItems() {
   return (
     <div className="default-div custom-border rounded p-3 my-3 default-text">
       <div className="d-flex">
-        <h5>Cost of main products cart</h5>
+        <h5>Cost of your favorite items</h5>
         <FontAwesomeIcon className="ms-2 mt-1" icon={faDollarSign} />
       </div>
-      <p className="small">
-        Main products are items that You chose in the options, otherwise, the
-        default are used
-      </p>
       {mainCartPrices.length < 1 ? (
         <div className="h-100 d-flex align-items-center justify-content-center">
           <div className="loader">...</div>

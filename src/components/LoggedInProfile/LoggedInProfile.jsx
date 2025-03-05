@@ -11,14 +11,15 @@ import { AppContext } from '../../context/AppContext';
 
 function LoggedInProfile({ userId, onLogOut }) {
   // const [profileOptions, setProfileOptions] = useState([]);
-  const [userName, setUserName] = useState('');
+  // const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [optionText, setOptionText] = useState('New option');
+  const [optionText, setOptionText] = useState('New favorite');
   const [isMobile, setIsMobile] = useState(false);
   const [errorText, setErrorText] = useState('');
   const getProduct = useRef();
 
-  const { profileOptions, setProfileOptions, userID } = useContext(AppContext);
+  const { profileOptions, setProfileOptions, userID, userName } =
+    useContext(AppContext);
 
   useEffect(() => {
     //if window size is below 600px gives true
@@ -129,46 +130,46 @@ function LoggedInProfile({ userId, onLogOut }) {
     }
   };
 
-  const getUserName = async () => {
-    setUserName('Loading...');
-    try {
-      const response = await fetch(
-        `${cfg.API.HOST}/user/username?id=${userId}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-type': 'Application/json',
-          },
-        }
-      );
+  // const getUserName = async () => {
+  //   setUserName('Loading...');
+  //   try {
+  //     const response = await fetch(
+  //       `${cfg.API.HOST}/user/username?id=${userId}`,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-type': 'Application/json',
+  //         },
+  //       }
+  //     );
 
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Something went wrong');
+  //     }
 
-      if (response === '') {
-        throw new Error('There are no user with such id');
-      }
+  //     if (response === '') {
+  //       throw new Error('There are no user with such id');
+  //     }
 
-      const username = await response.json();
+  //     const username = await response.json();
 
-      setUserName(username);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //     setUserName(username);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    getUserName();
-    // getProfileOptions();
-  }, []);
+  // useEffect(() => {
+  //   getUserName();
+  //   // getProfileOptions();
+  // }, [userID]);
 
-  const popOverText = `These are your main items. They are used to calculate the cost of the main products cart. If You don't provide any, the default are used.`;
+  const popOverText = `These are your favorite items. They are used to calculate the cost of the favorite products cart. If You don't provide any, the default are used.`;
 
   return (
     <div className="default-div default-text m-4">
       <div className="custom-border rounded p-2 d-flex">
-        <p className="m-2">Hello, {userName}!</p>
+        <p className="m-2">{userName ? `Hello, ${userName}!` : 'Loading...'}</p>
         <button
           className="non-styled-item underline-button"
           onClick={() => onLogOut()}
@@ -179,7 +180,7 @@ function LoggedInProfile({ userId, onLogOut }) {
       <div>
         <div className="d-flex flex-column">
           <div className="d-flex">
-            <h5 className="my-3 ms-2">Main items</h5>
+            <h5 className="my-3 ms-2">Favorite items</h5>
             <button
               onClick={() => setShowPopup(!showPopup)}
               className="non-styled-item default-text"
@@ -195,7 +196,7 @@ function LoggedInProfile({ userId, onLogOut }) {
             deleteOptionFunction: deleteOption,
           })
         ) : (
-          <p className="ms-2">No options, the defaults are used.</p>
+          <p className="ms-2">No favorites, the defaults are used.</p>
         )}
       </div>
       <div className="my-4 custom-border rounded p-2 d-flex flex-wrap">
@@ -210,7 +211,7 @@ function LoggedInProfile({ userId, onLogOut }) {
           className="non-styled-item underline-button default-text ms-3"
           onClick={() => addNewOption()}
         >
-          Add option
+          Add new favorite
         </button>
         {errorText ? (
           <div className={isMobile ? 'mt-2 default-text' : 'ms-3 default-text'}>

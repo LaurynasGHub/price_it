@@ -1,7 +1,6 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 
 // components
-import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
@@ -14,9 +13,11 @@ import './main.scss';
 
 function Main() {
   // const [searchResults, setSearchResults] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  // const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+
+  const searchValue = useRef('');
 
   const [searchResults, setSearchResults] = useState(() => {
     const storedResults = sessionStorage.getItem('searchResults');
@@ -27,19 +28,15 @@ function Main() {
     sessionStorage.setItem('searchResults', JSON.stringify(searchResults));
   }, [searchResults]);
 
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
   async function getScraperResults() {
-    if (searchValue === '') {
+    if (searchValue.current.value === '') {
       setErrorMessage('Please provide something to search');
       return;
     }
 
     try {
       const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${searchValue}`,
+        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${searchValue.current.value}`,
         {
           method: 'GET',
         }
@@ -76,8 +73,13 @@ function Main() {
         </div>
       </div>
       <div className="row">
-        <div className="col-8 col-sm-10 col-md-10">
-          <SearchBar handleInputChange={handleInputChange} />
+        <div className="col-8 col-sm-10 col-md-10 search-bar">
+          {/* <SearchBar handleInputChange={handleInputChange} /> */}
+          <input
+            className="default-div custom-border rounded p-2 default-text w-100"
+            placeholder="enter product name"
+            ref={searchValue}
+          />
         </div>
         <div className="col-4 col-sm-2 col-md-2">
           <SearchButton onClickFunction={getSearchResults} />

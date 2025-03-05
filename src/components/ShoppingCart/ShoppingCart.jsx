@@ -60,10 +60,6 @@ function ShoppingCart() {
           Clear cart
         </button>
       </div>
-      <p className="small">
-        Here you can add items to Your shopping cart from different shops. The
-        item name, price and shop is displayed
-      </p>
       {cartData.length > 0 ? (
         cartData.map((item, index) => (
           <div key={index} className="row d-flex custom-border-bottom mb-2">
@@ -91,10 +87,10 @@ function ShoppingCart() {
       )}
       {cartData.length > 0 ? (
         <div className="row d-flex">
-          <div className="col-9 col-sm-10 col-md-10">
-            <p className="small me-2 mb-1">Total price:</p>
+          <div className="col-3 col-sm-3 col-md-3">
+            <p className="small me-2 mb-1">Total:</p>
           </div>
-          <div className="col-3 col-sm-2 col-md-2">
+          <div className="col-3 col-sm-3 col-md-3">
             <p className="small me-2 mb-1">{totalPrice} €</p>
           </div>
         </div>

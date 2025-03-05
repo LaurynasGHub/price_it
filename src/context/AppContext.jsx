@@ -8,6 +8,7 @@ function AppContextProvider(props) {
   const [mainCartData, setMainCartData] = useState([]);
   const [mainCartPrices, setMainCartPrices] = useState([]);
   const [profileOptions, setProfileOptions] = useState([]);
+  const [userName, setUserName] = useState('');
   const [userID, setUserID] = useState(localStorage.getItem('userID') || '');
 
   const storedCartData = localStorage.getItem('cartData');
@@ -106,6 +107,34 @@ function AppContextProvider(props) {
     }
   };
 
+  const getUserName = async () => {
+    try {
+      const response = await fetch(
+        `${cfg.API.HOST}/user/username?id=${userID}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'Application/json',
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      if (response === '') {
+        throw new Error('There are no user with such id');
+      }
+
+      const username = await response.json();
+
+      setUserName(username);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   //   when page mounts gathers data from backend
   useEffect(() => {
     fetchSearchData();
@@ -121,6 +150,13 @@ function AppContextProvider(props) {
   useEffect(() => {
     getMainCartPrices();
   }, [userID, profileOptions]);
+
+  useEffect(() => {
+    if (userID) {
+      getProfileOptions();
+      getUserName();
+    }
+  }, [userID]);
 
   // useEffect(() => {
   //   console.log('Current searchData:', searchData);
@@ -151,6 +187,8 @@ function AppContextProvider(props) {
         setUserID,
         profileOptions,
         setProfileOptions,
+        userName,
+        getUserName,
         handleAddToCart,
         handleRemoveFromCart,
         handleClearCart,

@@ -1,7 +1,6 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 
 // components
-import SearchBar from '../SearchBar/SearchBar';
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
@@ -11,10 +10,10 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { cfg } from '../../cfg/cfg';
 
 function AlcoholMain() {
-  const [searchValue, setSearchValue] = useState('');
-  //   const { searchData, setSearchData } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+
+  const searchValue = useRef('');
 
   const [alcoholSearchResults, setAlcoholSearchResults] = useState(() => {
     const storedResults = sessionStorage.getItem('alcoholSearchResults');
@@ -28,19 +27,15 @@ function AlcoholMain() {
     );
   }, [alcoholSearchResults]);
 
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
   async function getScraperResults() {
-    if (searchValue === '') {
+    if (searchValue.current.value === '') {
       setErrorMessage('Please provide something to search');
       return;
     }
 
     try {
       const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/alcohol/results?searchTerm=${searchValue}`,
+        `${cfg.API.HOST}/scrapers/shops/alcohol/results?searchTerm=${searchValue.current.value}`,
         {
           method: 'GET',
         }
@@ -76,7 +71,11 @@ function AlcoholMain() {
       </div>
       <div className="row">
         <div className="col-8 col-sm-10 col-md-10">
-          <SearchBar handleInputChange={handleInputChange} />
+          <input
+            className="default-div custom-border rounded p-2 default-text w-100"
+            placeholder="enter product name"
+            ref={searchValue}
+          />
         </div>
         <div className="col-4 col-sm-2 col-md-2">
           <SearchButton onClickFunction={getSearchResults} />

@@ -17,7 +17,7 @@ function Profile() {
   const getUsername = useRef();
 
   const [loggedIn, setLoggedIn] = useLoggedIn();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [logInError, setLogInError] = useState();
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
@@ -94,12 +94,16 @@ function Profile() {
           </form>
           <div className="error-message mt-3">{logInError}</div>
           <div className="m-3">
-            <button
-              className="underline-button default-text non-styled-item"
-              onClick={handleLogIn}
-            >
-              Log in
-            </button>
+            {loading ? (
+              <div className="loader">...</div>
+            ) : (
+              <button
+                className="underline-button default-text non-styled-item"
+                onClick={handleLogIn}
+              >
+                Log in
+              </button>
+            )}
           </div>
           <div className="register-div">
             {!showRegisterForm ? (
