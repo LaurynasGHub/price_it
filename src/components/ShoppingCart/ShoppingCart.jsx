@@ -63,7 +63,7 @@ function ShoppingCart() {
       {cartData.length > 0 ? (
         cartData.map((item, index) => (
           <div key={index} className="row d-flex custom-border-bottom mb-2">
-            <div className="col-5 col-sm-6 col-md-6">
+            <div className="col-5 col-sm-6 col-md-5">
               <p className="small mb-1">{item.name}</p>
             </div>
             <div className="col-2 col-sm-2 col-md-2">
@@ -72,7 +72,7 @@ function ShoppingCart() {
             <div className="col-3 col-sm-3 col-md-3">
               <p className="small mb-1">{item.price} €</p>
             </div>
-            <div className="col-2 col-sm-1 col-md-1">
+            <div className="col-2 col-sm-1 col-md-2">
               <button
                 className="non-styled-item underline-button default-text"
                 onClick={() => handleRemoveFromCart(item)}
