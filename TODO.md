@@ -1,5 +1,7 @@
 ## TODO List:
 
+• Just a test to see if changes are tracked.
+
 • Add descriptions to profile page, move how to use app there.
 
 • Work on API- it's slow. Maybe remove something so it is fetched only when necessary.
