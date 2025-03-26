@@ -1,0 +1,23 @@
+.form-switch .form-check-input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  border-color: rgb(171, 168, 168);
+}
+
+.form-switch .form-check-input:checked {
+  background-color: #141416;
+  border-color: #141416;
+  border-color: rgb(96, 96, 96);
+}
+
+.form-switch .form-check-input {
+  border-color: #a2a0a0;
+}
+
+.svg-day {
+  fill: rgb(255, 255, 255);
+}
+
+.svg-night {
+  fill: rgba(0, 0, 0, 1);
+}
