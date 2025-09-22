@@ -3,7 +3,7 @@ import { React, useState, useEffect, useRef } from 'react';
 // components
 import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
 import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
-// import SearchButton from '../SearchButton/SearchButton';
+import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
