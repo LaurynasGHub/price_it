@@ -33,27 +33,25 @@ function ResultCards({ searchResults, shop }) {
 
   return (
     <div className="custom-border rounded p-2 my-3">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="p-2 col-4 col-sm-2 col-md-2">
-            <img
-              className="image-fluid rounded"
-              src={shopImgSwitch(shop)}
-              alt="shop-img"
-            ></img>
-          </div>
+      <div className="row">
+        <div className="col-4 col-sm-2 col-md-2 ps-4 p-2">
+          <img
+            className="img-fluid rounded"
+            src={shopImgSwitch(shop)}
+            alt="shop-img"
+          ></img>
         </div>
-        <div className="row">
-          <div className="col-6 col-sm-8 col-md-8">
-            <p className="mb-2">
-              <u>Name</u>
-            </p>
-          </div>
-          <div className="col-3 col-sm-2 col-md-2 price-p">
-            <p>
-              <u>Price</u>
-            </p>
-          </div>
+      </div>
+      <div className="row">
+        <div className="col-6 col-sm-8 col-md-8">
+          <p className="mb-2 ms-2">
+            <u>Name</u>
+          </p>
+        </div>
+        <div className="col-2 col-sm-2 col-md-2 price-p">
+          <p>
+            <u>Price</u>
+          </p>
         </div>
       </div>
       {searchResults.length > 0 ? (

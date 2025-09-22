@@ -1,11 +1,8 @@
-import { React, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // components
-import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
-import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
-import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -61,16 +58,6 @@ function Main() {
   return (
     <div className="container-fluid pb-2">
       <div className="row">
-        {/* <div className="col-12 col-sm-12 col-md-12 default-div default-text">
-          <p className="info-text">
-            Welcome to Price It! Enter search term for which you would like to
-            know the price. Search term <u>has to be in lithuanian</u>. If you
-            would like more specific results enter more search terms. I.e.:
-            "duona Toste".
-          </p>
-        </div> */}
-      </div>
-      <div className="row">
         <div className="col-8 col-sm-10 col-md-10 search-bar">
           <input
             className="default-div custom-border rounded p-2 default-text w-100"
@@ -83,7 +70,7 @@ function Main() {
         </div>
       </div>
       <div className="row mt-2">
-        <div className="col-md-8">
+        <div className="col-12">
           <div className="default-div mt-2 default-text">
             {!searchResults ? (
               <div className="h-100 d-flex align-items-center justify-content-center">
@@ -96,13 +83,13 @@ function Main() {
             ) : searchResults.barbora?.products.length > 0 ||
               searchResults.rimi?.products.length > 0 ||
               searchResults.lastMile?.products.length > 0 ? (
-              <div className="default-div small">
+              <div className="default-div">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
                     <div className="loader pb-3">...</div>
                   </div>
                 ) : (
-                  <div className="default-div small">
+                  <div className="default-div">
                     <ResultCards
                       searchResults={searchResults.barbora.products}
                       shop={'maxima'}
@@ -128,11 +115,6 @@ function Main() {
               </div>
             )}
           </div>
-        </div>
-        <div className="col-md-4">
-          <MostSearchedItems />
-          <CostOfMainItemsCart />
-          <ShoppingCart />
         </div>
       </div>
     </div>
