@@ -1,8 +1,6 @@
 import { React, useState, useEffect, useRef } from 'react';
 
 // components
-import MostSearchedItems from '../MostSearchedItems/MostSearchedItems';
-import CostOfMainItemsCart from '../CostOfMainItemsCart/CostOfMainItemsCart';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
@@ -62,14 +60,6 @@ function AlcoholMain() {
   return (
     <div className="container-fluid pb-2">
       <div className="row">
-        <div className="col-12 col-sm-12 col-md-12 default-div default-text">
-          {/* <p className="info-text">
-            Welcome to alcohol prices search. Here you can find alcohol prices
-            from different shops - Vynoteka etc.
-          </p> */}
-        </div>
-      </div>
-      <div className="row">
         <div className="col-8 col-sm-10 col-md-10">
           <input
             className="default-div custom-border rounded p-2 default-text w-100"
@@ -119,8 +109,6 @@ function AlcoholMain() {
           </div>
         </div>
         <div className="col-md-4">
-          <MostSearchedItems />
-          <CostOfMainItemsCart />
           <ShoppingCart />
         </div>
       </div>

@@ -7,8 +7,7 @@ import Toggler from '../Toggler/Toggler';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faUser,
-  faMagnifyingGlass,
+  // faUser,
   faMartiniGlassCitrus,
   faBasketShopping,
 } from '@fortawesome/free-solid-svg-icons';
@@ -71,14 +70,13 @@ function Navbar() {
             icon={faMartiniGlassCitrus}
           />
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/profile"
           className={'underline-button non-styled-item default-text p-2 me-4'}
         >
           {isMobile ? '' : 'Profile'}
           <FontAwesomeIcon className={isMobile ? '' : 'ms-2'} icon={faUser} />
-        </NavLink>
-
+        </NavLink> */}
         <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
       </div>
     </div>

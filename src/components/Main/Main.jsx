@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 // components
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -58,7 +60,7 @@ function Main() {
   return (
     <div className="container-fluid pb-2">
       <div className="row">
-        <div className="col-8 col-sm-10 col-md-10 search-bar">
+        <div className="col-8 col-sm-10 col-md-10">
           <input
             className="default-div custom-border rounded p-2 default-text w-100"
             placeholder="enter product name"
@@ -70,7 +72,7 @@ function Main() {
         </div>
       </div>
       <div className="row mt-2">
-        <div className="col-12">
+        <div className="col-md-8">
           <div className="default-div mt-2 default-text">
             {!searchResults ? (
               <div className="h-100 d-flex align-items-center justify-content-center">
@@ -83,13 +85,13 @@ function Main() {
             ) : searchResults.barbora?.products.length > 0 ||
               searchResults.rimi?.products.length > 0 ||
               searchResults.lastMile?.products.length > 0 ? (
-              <div className="default-div">
+              <div className="default-div small">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
                     <div className="loader pb-3">...</div>
                   </div>
                 ) : (
-                  <div className="default-div">
+                  <div className="default-div small">
                     <ResultCards
                       searchResults={searchResults.barbora.products}
                       shop={'maxima'}
@@ -116,6 +118,10 @@ function Main() {
             )}
           </div>
         </div>
+        <div className="col-md-4">
+          <ShoppingCart />
+        </div>
+        <div></div>
       </div>
     </div>
   );
