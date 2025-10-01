@@ -1,4 +1,6 @@
-import React from 'react';
+// This item, so far, is not used anywhere
+// for the purpose of it being here, the element is not deleted
+// so - if it is needed in the future - it could be reused
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';

@@ -8,8 +8,6 @@ import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 
 import { cfg } from '../../cfg/cfg';
 
-import './main.scss';
-
 function Main() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
