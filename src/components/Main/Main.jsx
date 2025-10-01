@@ -11,6 +11,7 @@ import { cfg } from '../../cfg/cfg';
 function Main() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+  const [localFull, setLocalFull] = useState(false);
 
   const searchValue = useRef('');
 
@@ -19,8 +20,11 @@ function Main() {
     return storedResults ? JSON.parse(storedResults) : [];
   });
 
+  // Save only when results are non-empty
   useEffect(() => {
-    sessionStorage.setItem('searchResults', JSON.stringify(searchResults));
+    if (searchResults.length > 0) {
+      sessionStorage.setItem('searchResults', JSON.stringify(searchResults));
+    }
   }, [searchResults]);
 
   async function getScraperResults() {
@@ -46,11 +50,16 @@ function Main() {
   }
 
   async function getSearchResults() {
+    console.log('click!');
+
     setLoading(true);
 
     const fetchResult = await getScraperResults();
 
-    setSearchResults(fetchResult);
+    if (fetchResult !== undefined) {
+      setSearchResults(fetchResult);
+      setLocalFull(true);
+    }
 
     setLoading(false);
   }
@@ -80,9 +89,7 @@ function Main() {
                   <p className="custom-border-bottom p-2">{errorMessage}</p>
                 )}
               </div>
-            ) : searchResults.barbora?.products.length > 0 ||
-              searchResults.rimi?.products.length > 0 ||
-              searchResults.lastMile?.products.length > 0 ? (
+            ) : localFull ? (
               <div className="default-div small">
                 {loading ? (
                   <div className="h-100 d-flex align-items-center justify-content-center">
