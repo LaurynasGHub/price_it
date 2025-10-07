@@ -32,7 +32,7 @@ function ResultCards({ searchResults, shop }) {
   }
 
   return (
-    <div className="custom-border rounded p-2 my-3">
+    <div className="custom-border rounded p-2 mt-2 mb-3">
       <div className="row">
         <div className="col-4 col-sm-2 col-md-2 ps-4 p-2">
           <img

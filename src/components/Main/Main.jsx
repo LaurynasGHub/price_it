@@ -11,54 +11,65 @@ import { cfg } from '../../cfg/cfg';
 function Main() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
-  const [localFull, setLocalFull] = useState(false);
+  const [searchResults, setSearchResults] = useState(() => {
+    const storedResults = sessionStorage.getItem('searchResults');
+    return storedResults ? JSON.parse(storedResults) : null;
+  });
 
   const searchValue = useRef('');
 
-  const [searchResults, setSearchResults] = useState(() => {
-    const storedResults = sessionStorage.getItem('searchResults');
-    return storedResults ? JSON.parse(storedResults) : [];
-  });
-
-  // Save only when results are non-empty
+  // Save results in sessionStorage when not empty
   useEffect(() => {
-    if (searchResults.length > 0) {
+    if (searchResults) {
       sessionStorage.setItem('searchResults', JSON.stringify(searchResults));
     }
   }, [searchResults]);
 
   async function getScraperResults() {
-    if (searchValue.current.value === '') {
+    const value = searchValue.current?.value?.trim() || '';
+
+    if (value === '') {
       setErrorMessage('Please provide something to search');
-      return;
+      setSearchResults(null);
+      return null;
     }
 
     try {
       const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${searchValue.current.value}`,
-        {
-          method: 'GET',
-        }
+        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}`,
+        { method: 'GET' }
       );
 
       const result = await response.json();
-
       return result;
     } catch (error) {
       console.log(`Error: ${error.message}`);
+      setErrorMessage('Error fetching data');
+      return null;
     }
   }
 
   async function getSearchResults() {
-    console.log('click!');
-
     setLoading(true);
+    setErrorMessage('');
 
     const fetchResult = await getScraperResults();
 
-    if (fetchResult !== undefined) {
+    if (fetchResult === null) {
+      setLoading(false);
+      return;
+    }
+
+    const hasResults =
+      fetchResult?.barbora?.products?.length > 0 ||
+      fetchResult?.rimi?.products?.length > 0 ||
+      fetchResult?.lastMile?.products?.length > 0;
+
+    if (hasResults) {
       setSearchResults(fetchResult);
-      setLocalFull(true);
+    } else {
+      setSearchResults(null);
+      setErrorMessage('No results found');
     }
 
     setLoading(false);
@@ -78,55 +89,38 @@ function Main() {
           <SearchButton onClickFunction={getSearchResults} />
         </div>
       </div>
+
       <div className="row mt-2">
-        <div className="col-md-8">
-          <div className="default-div mt-2 default-text">
-            {!searchResults ? (
-              <div className="h-100 d-flex align-items-center justify-content-center">
-                {loading ? (
-                  <div className="loader pb-3">...</div>
-                ) : (
-                  <p className="custom-border-bottom p-2">{errorMessage}</p>
-                )}
-              </div>
-            ) : localFull ? (
-              <div className="default-div small">
-                {loading ? (
-                  <div className="h-100 d-flex align-items-center justify-content-center">
-                    <div className="loader pb-3">...</div>
-                  </div>
-                ) : (
-                  <div className="default-div small">
-                    <ResultCards
-                      searchResults={searchResults.barbora.products}
-                      shop={'maxima'}
-                    />
-                    <ResultCards
-                      searchResults={searchResults.rimi.products}
-                      shop={'rimi'}
-                    />
-                    <ResultCards
-                      searchResults={searchResults.lastMile.products}
-                      shop={'iki'}
-                    />
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="h-100 d-flex align-items-center justify-content-center">
-                {loading ? (
-                  <div className="loader">...</div>
-                ) : (
-                  <p className="custom-border-bottom p-2">No results yet</p>
-                )}
-              </div>
-            )}
-          </div>
+        <div className="col-md-8 default-div mt-2 default-text">
+          {loading ? (
+            <div className="h-100 d-flex align-items-center justify-content-center">
+              <div className="loader pb-3">...</div>
+            </div>
+          ) : searchResults ? (
+            <div className="default-div small">
+              <ResultCards
+                searchResults={searchResults.barbora?.products}
+                shop="maxima"
+              />
+              <ResultCards
+                searchResults={searchResults.rimi?.products}
+                shop="rimi"
+              />
+              <ResultCards
+                searchResults={searchResults.lastMile?.products}
+                shop="iki"
+              />
+            </div>
+          ) : (
+            <div className="h-100 d-flex align-items-center justify-content-center">
+              <p className="custom-border-bottom p-2">{errorMessage}</p>
+            </div>
+          )}
         </div>
+
         <div className="col-md-4">
           <ShoppingCart />
         </div>
-        <div></div>
       </div>
     </div>
   );
