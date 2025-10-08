@@ -18,7 +18,6 @@ function Main() {
 
   const searchValue = useRef('');
 
-  // Save results in sessionStorage when not empty
   useEffect(() => {
     if (searchResults) {
       sessionStorage.setItem('searchResults', JSON.stringify(searchResults));

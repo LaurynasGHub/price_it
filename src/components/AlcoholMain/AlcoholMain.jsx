@@ -1,6 +1,5 @@
-import { React, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-// components
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
@@ -10,49 +9,62 @@ import { cfg } from '../../cfg/cfg';
 function AlcoholMain() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+  const [alcoholResults, setAlcoholResults] = useState(() => {
+    const storedResults = sessionStorage.getItem('alcoholResults');
+    return storedResults ? JSON.parse(storedResults) : null;
+  });
 
   const searchValue = useRef('');
 
-  const [alcoholSearchResults, setAlcoholSearchResults] = useState(() => {
-    const storedResults = sessionStorage.getItem('alcoholSearchResults');
-    return storedResults ? JSON.parse(storedResults) : [];
-  });
-
   useEffect(() => {
-    sessionStorage.setItem(
-      'alcoholSearchResults',
-      JSON.stringify(alcoholSearchResults)
-    );
-  }, [alcoholSearchResults]);
+    if (alcoholResults) {
+      sessionStorage.setItem('alcoholResults', JSON.stringify(alcoholResults));
+    }
+  }, [alcoholResults]);
 
   async function getScraperResults() {
-    if (searchValue.current.value === '') {
+    const value = searchValue.current?.value?.trim() || '';
+
+    if (value === '') {
       setErrorMessage('Please provide something to search');
-      return;
+      setAlcoholResults(null);
+      return null;
     }
 
     try {
       const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/alcohol/results?searchTerm=${searchValue.current.value}`,
-        {
-          method: 'GET',
-        }
+        `${cfg.API.HOST}/scrapers/shops/alcohol/results?searchTerm=${value}`,
+        { method: 'GET' }
       );
 
       const result = await response.json();
-
       return result;
     } catch (error) {
       console.log(`Error: ${error.message}`);
+      setErrorMessage('Error fetching data');
+      return null;
     }
   }
 
   async function getSearchResults() {
     setLoading(true);
+    setErrorMessage('');
 
     const fetchResult = await getScraperResults();
 
-    setAlcoholSearchResults(fetchResult);
+    if (fetchResult === null) {
+      setLoading(false);
+      return;
+    }
+
+    const hasResults = fetchResult?.vynoteka?.products?.length > 0;
+
+    if (hasResults) {
+      setAlcoholResults(fetchResult);
+    } else {
+      setAlcoholResults(null);
+      setErrorMessage('No results found');
+    }
 
     setLoading(false);
   }
@@ -72,41 +84,23 @@ function AlcoholMain() {
         </div>
       </div>
       <div className="row mt-2">
-        <div className="col-md-8">
-          <div className="default-div mt-2 default-text">
-            {!alcoholSearchResults ? (
-              <div className="h-100 d-flex align-items-center justify-content-center">
-                {loading ? (
-                  <div className="loader pb-3">...</div>
-                ) : (
-                  <p className="custom-border-bottom p-2">{errorMessage}</p>
-                )}
-              </div>
-            ) : alcoholSearchResults.vynoteka?.products.length > 0 ? (
-              <div className="default-div small">
-                {loading ? (
-                  <div className="h-100 d-flex align-items-center justify-content-center">
-                    <div className="loader pb-3">...</div>
-                  </div>
-                ) : (
-                  <div className="default-div small">
-                    <ResultCards
-                      searchResults={alcoholSearchResults.vynoteka.products}
-                      shop={'vynoteka'}
-                    />
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="h-100 d-flex align-items-center justify-content-center">
-                {loading ? (
-                  <div className="loader">...</div>
-                ) : (
-                  <p className="custom-border-bottom p-2">No results yet</p>
-                )}
-              </div>
-            )}
-          </div>
+        <div className="col-md-8 default-div mt-2 default-text">
+          {loading ? (
+            <div className="h-100 d-flex align-items-center justify-content-center">
+              <div className="loader pb-3">...</div>
+            </div>
+          ) : alcoholResults ? (
+            <div className="default-div small">
+              <ResultCards
+                searchResults={alcoholResults.vynoteka?.products}
+                shop="vynoteka"
+              />
+            </div>
+          ) : (
+            <div className="h-100 d-flex align-items-center justify-content-center">
+              <p className="custom-border-bottom p-2">{errorMessage}</p>
+            </div>
+          )}
         </div>
         <div className="col-md-4">
           <ShoppingCart />
