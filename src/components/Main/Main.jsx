@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -90,7 +89,8 @@ function Main() {
       </div>
 
       <div className="row mt-2">
-        <div className="col-md-8 default-div mt-2 default-text">
+        <div className="d-none d-md-block col-md-2"></div>
+        <div className="col-md-5 default-div mt-2 default-text">
           {loading ? (
             <div className="h-100 d-flex align-items-center justify-content-center">
               <div className="loader pb-3">...</div>
@@ -117,9 +117,10 @@ function Main() {
           )}
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-3">
           <ShoppingCart />
         </div>
+        <div className="d-none d-md-block col-md-2"></div>
       </div>
     </div>
   );

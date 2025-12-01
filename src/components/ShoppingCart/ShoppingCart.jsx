@@ -50,7 +50,7 @@ function ShoppingCart() {
     >
       <div className="d-flex justify-content-between">
         <div className="d-flex">
-          <h5>Shopping cart</h5>
+          <h5 className="fs-5">Shopping cart</h5>
           <FontAwesomeIcon className="ms-2 mt-1" icon={faCartShopping} />
         </div>
         <button
@@ -66,15 +66,15 @@ function ShoppingCart() {
             <div className="col-5 col-sm-6 col-md-5">
               <p className="small mb-1">{item.name}</p>
             </div>
-            <div className="col-2 col-sm-2 col-md-2">
-              <p className="small mb-1">{item.shop}</p>
+            <div className="col-4 col-sm-4 col-md-3 overflow-hidden">
+              <p className="small mb-1 text-truncate">{item.shop}</p>
             </div>
-            <div className="col-3 col-sm-3 col-md-3">
+            <div className="col-2 col-sm-1 col-md-3 p-0 justify-content-end">
               <p className="small mb-1">{item.price} €</p>
             </div>
-            <div className="col-2 col-sm-1 col-md-2">
+            <div className="col-1 col-sm-1 col-md-1 p-0">
               <button
-                className="non-styled-item underline-button default-text"
+                className="non-styled-item underline-button default-text p-0"
                 onClick={() => handleRemoveFromCart(item)}
               >
                 <FontAwesomeIcon icon={faTrash} />
@@ -90,7 +90,7 @@ function ShoppingCart() {
           <div className="col-3 col-sm-3 col-md-3">
             <p className="small me-2 mb-1">Total:</p>
           </div>
-          <div className="col-3 col-sm-3 col-md-3">
+          <div className="col-4 col-sm-4 col-md-4">
             <p className="small me-2 mb-1">{totalPrice} €</p>
           </div>
         </div>
