@@ -1,6 +1,8 @@
 .shop-button-default {
   box-sizing: border-box;
   border: 0.05rem solid var(--primary-border-color);
+
+  width: var(--shop-button-width);
 }
 
 .shop-button-default.selected-button {
