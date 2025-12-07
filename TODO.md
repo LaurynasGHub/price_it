@@ -4,7 +4,7 @@
 
 • Add descriptions to profile page, move how to use app there.
 
-• Work on API- it's slow. Maybe remove something so it is fetched only when necessary.
+• Work on API- it's slow. Maybe remove something so it is fetched only when necessary. ✅
 
 • Check maybe it's possible to get price from Lidl and Norfa. So far it is not possible. Atleast get their sales brochures.
 

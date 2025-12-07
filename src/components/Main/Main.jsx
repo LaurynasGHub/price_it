@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import SearchButton from '../SearchButton/SearchButton';
 import ResultCards from '../ResultCards/ResultCards';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import ShopsSelection from '../ShopsSelection/ShopsSelection';
 
 import { cfg } from '../../cfg/cfg';
 
@@ -75,6 +76,7 @@ function Main() {
 
   return (
     <div className="container-fluid pb-2">
+      {/* first row - navbar, search bar */}
       <div className="row">
         <div className="col-8 col-sm-10 col-md-10">
           <input
@@ -88,6 +90,14 @@ function Main() {
         </div>
       </div>
 
+      {/* second row - shop selector */}
+      <div className="row">
+        <div className="col-12 col-sm-12 col-md-12">
+          <ShopsSelection />
+        </div>
+      </div>
+
+      {/* third row, result cards */}
       <div className="row mt-2">
         <div className="d-none d-md-block col-md-2"></div>
         <div className="col-md-5 default-div mt-2 default-text">

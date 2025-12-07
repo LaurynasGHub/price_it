@@ -1,0 +1,8 @@
+.shop-button-default {
+  box-sizing: border-box;
+  border: 0.05rem solid var(--primary-border-color);
+}
+
+.shop-button-default.selected-button {
+  background-color: gray;
+}
