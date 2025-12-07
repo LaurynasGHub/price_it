@@ -1,6 +1,11 @@
-[
-  { "id": 1, "name": "Maxima" },
-  { "id": 2, "name": "Rimi" },
-  { "id": 3, "name": "Iki" },
-  { "id": 4, "name": "Vynoteka" }
-]
+{
+  "shops": {
+    "groceries": [
+      { "id": 1, "name": "Maxima" },
+      { "id": 2, "name": "Rimi" },
+      { "id": 3, "name": "Iki" }
+    ],
+
+    "alcohol": [{ "id": 1, "name": "Vynoteka" }]
+  }
+}
