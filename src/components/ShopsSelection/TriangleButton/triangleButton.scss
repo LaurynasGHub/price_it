@@ -1,0 +1,24 @@
+.triangle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--primary-text-color);
+
+  transition: transform 250ms ease;
+}
+
+.triangle-button.rotated .triangle {
+  transform: rotate(180deg);
+}
