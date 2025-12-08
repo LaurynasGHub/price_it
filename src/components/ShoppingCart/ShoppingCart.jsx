@@ -50,7 +50,7 @@ function ShoppingCart() {
     >
       <div className="d-flex justify-content-between">
         <div className="d-flex">
-          <h5 className="fs-5">Shopping cart</h5>
+          <h5 className="fs-5">Cart</h5>
           <FontAwesomeIcon className="ms-2 mt-1" icon={faCartShopping} />
         </div>
         <button
