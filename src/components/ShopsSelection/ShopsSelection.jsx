@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 // components
 import ShopSelectButton from '../ShopsSelection/ShopSelectButton/ShopSelectButton';
@@ -9,12 +10,9 @@ import shopList from '../../utils/shopList.json';
 
 function ShopsSelection() {
   const [selectionOpen, setSelectionOpen] = useState(false);
+  const { selectedShopList } = useContext(AppContext);
 
-  // how to add shop to selection
-  // setShopList (...shopList, newShop)
-  // something like the line above
-
-  function shopSelection() {
+  function shopSelection(shopName) {
     setSelectionOpen(!selectionOpen);
   }
 
@@ -39,6 +37,18 @@ function ShopsSelection() {
               <ShopSelectButton shopName={shop.name} key={shop.id} />
             ))}
           </div>
+        </div>
+        <div className="mb-0 m-1">
+          {selectedShopList.length === 0 ? (
+            <p>No shops selected</p>
+          ) : (
+            <div>
+              <p>Selected shops</p>
+              {selectedShopList.map((shop) => (
+                <p key={shop}>{shop}</p>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

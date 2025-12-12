@@ -10,6 +10,7 @@ function AppContextProvider(props) {
 
   const [cartData, setCartData] = useState(initialCartData);
 
+  // shopping cart handlers
   const handleAddToCart = (item) => {
     setCartData((prevCartData) => [...prevCartData, item]);
   };
@@ -26,6 +27,18 @@ function AppContextProvider(props) {
     setCartData(() => []);
   };
 
+  // shop selection handler
+  const [selectedShopList, setSelectedShopList] = useState([]);
+
+  function handleShopSelection(item) {
+    setSelectedShopList(
+      (prev) =>
+        prev.includes(item)
+          ? prev.filter((i) => i !== item) // remove
+          : [...prev, item] // add
+    );
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -34,6 +47,8 @@ function AppContextProvider(props) {
         handleAddToCart,
         handleRemoveFromCart,
         handleClearCart,
+        selectedShopList,
+        handleShopSelection,
       }}
     >
       {props.children}
