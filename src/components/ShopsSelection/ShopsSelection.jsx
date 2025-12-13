@@ -12,12 +12,12 @@ function ShopsSelection() {
   const [selectionOpen, setSelectionOpen] = useState(false);
   const { selectedShopList } = useContext(AppContext);
 
-  function shopSelection(shopName) {
+  function shopSelection() {
     setSelectionOpen(!selectionOpen);
   }
 
   return (
-    <div className="default-div default-text p-2 my-2 custom-border rounded d-flex flex-column flex-wrap">
+    <div className="default-div default-text p-2 my-3 custom-border rounded d-flex flex-column flex-wrap">
       <div>
         <TriangleButton onToggle={() => shopSelection()} />
       </div>
@@ -42,10 +42,13 @@ function ShopsSelection() {
           {selectedShopList.length === 0 ? (
             <p>No shops selected</p>
           ) : (
-            <div>
-              <p>Selected shops</p>
-              {selectedShopList.map((shop) => (
-                <p key={shop}>{shop}</p>
+            <div className="d-flex flex-row">
+              <p className="me-1">Selected shops -</p>
+              {selectedShopList.map((shop, index) => (
+                <p className="me-1" key={shop}>
+                  {shop}
+                  {index < selectedShopList.length - 1 && ','}
+                </p>
               ))}
             </div>
           )}
