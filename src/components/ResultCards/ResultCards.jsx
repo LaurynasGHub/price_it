@@ -1,5 +1,3 @@
-import React from 'react';
-
 // components
 import ResultCard from '../ResultCard/ResultCard';
 

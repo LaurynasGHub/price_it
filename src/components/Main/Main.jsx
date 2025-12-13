@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 // components
 import SearchButton from '../SearchButton/SearchButton';
@@ -11,6 +12,7 @@ import { cfg } from '../../cfg/cfg';
 function Main() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
+  const { selectedShopList } = useContext(AppContext);
   const [searchResults, setSearchResults] = useState(() => {
     const storedResults = sessionStorage.getItem('searchResults');
     return storedResults ? JSON.parse(storedResults) : null;
@@ -34,12 +36,34 @@ function Main() {
     }
 
     try {
-      const response = await fetch(
-        `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}`,
-        { method: 'GET' }
-      );
+      // const searchShops = selectedShopList
+      //   .map((shop) => shop.toLowerCase())
+      //   .join('/');
+
+      // const fullTestFetchUrl = `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}&shops=${searchShops}`;
+
+      // console.log(fullTestFetchUrl);
+
+      // const response = await fetch(
+      //   `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}`,
+      //   { method: 'GET' }
+      // );
+
+      // const result = await response.json();
+
+      // return result;
+      const searchShops = selectedShopList
+        .map((shop) => shop.toLowerCase())
+        .join(',');
+
+      const fullTestFetchUrl = `${cfg.API.HOST}/scrapers/shops/v2/results?searchTerm=${value}&shops=${searchShops}`;
+
+      console.log(fullTestFetchUrl);
+
+      const response = await fetch(fullTestFetchUrl, { method: 'GET' });
 
       const result = await response.json();
+
       return result;
     } catch (error) {
       console.log(`Error: ${error.message}`);
@@ -60,9 +84,10 @@ function Main() {
     }
 
     const hasResults =
-      fetchResult?.barbora?.products?.length > 0 ||
-      fetchResult?.rimi?.products?.length > 0 ||
-      fetchResult?.lastMile?.products?.length > 0;
+      fetchResult &&
+      Object.values(fetchResult).some(
+        (shop) => Array.isArray(shop?.products) && shop.products.length > 0
+      );
 
     if (hasResults) {
       setSearchResults(fetchResult);
@@ -107,18 +132,15 @@ function Main() {
             </div>
           ) : searchResults ? (
             <div className="default-div small">
-              <ResultCards
-                searchResults={searchResults.barbora?.products}
-                shop="maxima"
-              />
-              <ResultCards
-                searchResults={searchResults.rimi?.products}
-                shop="rimi"
-              />
-              <ResultCards
-                searchResults={searchResults.lastMile?.products}
-                shop="iki"
-              />
+              {Object.entries(searchResults ?? {}).map(
+                ([shopKey, shopData]) => (
+                  <ResultCards
+                    key={shopKey}
+                    searchResults={shopData?.products || []}
+                    shop={shopKey}
+                  />
+                )
+              )}
             </div>
           ) : (
             <div className="h-100 d-flex align-items-center justify-content-center">
