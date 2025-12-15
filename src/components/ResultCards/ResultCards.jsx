@@ -10,11 +10,11 @@ function ResultCards({ searchResults, shop }) {
         imgPath = '/images/RIMI.png';
         break;
 
-      case 'maxima':
+      case 'barbora':
         imgPath = '/images/barbora_cover.jpeg';
         break;
 
-      case 'iki':
+      case 'lastMile':
         imgPath = '/images/IKI_logo.png';
         break;
 

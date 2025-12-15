@@ -1,8 +1,23 @@
 import { useState, useEffect } from 'react';
+import useLocalStorage from 'use-local-storage';
+import { NavLink } from 'react-router-dom';
+
+// components
+import Toggler from '../Toggler/Toggler';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser,
+  faMagnifyingGlass,
+  faMartiniGlassCitrus,
+  faBasketShopping,
+} from '@fortawesome/free-solid-svg-icons';
 
 import './navbar.scss';
 
 function Navbar() {
+  const preference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [isDark, setIsDark] = useLocalStorage('isDark', preference);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -35,8 +50,8 @@ function Navbar() {
         <h2 className="default-text navbar-title mb-0">Price It</h2>
       )}
 
-      {/* <div className="navbar-items">
-        <NavLink
+      <div className="navbar-items">
+        {/* <NavLink
           to="/search_tool"
           className={'underline-button non-styled-item default-text p-2 me-4'}
         >
@@ -56,8 +71,17 @@ function Navbar() {
             icon={faMartiniGlassCitrus}
           />
         </NavLink>
+        <NavLink
+          to="/profile"
+          className={'underline-button non-styled-item default-text p-2 me-4'}
+        >
+          {isMobile ? '' : 'Profile'}
+          <FontAwesomeIcon className={isMobile ? '' : 'ms-2'} icon={faUser} />
+        </NavLink> */}
+        {/* To do */}
+        {/* add navigation to about tab */}
         <Toggler isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-      </div> */}
+      </div>
     </div>
   );
 }

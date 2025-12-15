@@ -36,31 +36,19 @@ function Main() {
     }
 
     try {
-      // const searchShops = selectedShopList
-      //   .map((shop) => shop.toLowerCase())
-      //   .join('/');
+      if (selectedShopList.length === 0) {
+        setErrorMessage('Please select at least one shop');
+        return null;
+      }
 
-      // const fullTestFetchUrl = `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}&shops=${searchShops}`;
-
-      // console.log(fullTestFetchUrl);
-
-      // const response = await fetch(
-      //   `${cfg.API.HOST}/scrapers/shops/results?searchTerm=${value}`,
-      //   { method: 'GET' }
-      // );
-
-      // const result = await response.json();
-
-      // return result;
       const searchShops = selectedShopList
         .map((shop) => shop.toLowerCase())
         .join(',');
 
-      const fullTestFetchUrl = `${cfg.API.HOST}/scrapers/shops/v2/results?searchTerm=${value}&shops=${searchShops}`;
-
-      console.log(fullTestFetchUrl);
-
-      const response = await fetch(fullTestFetchUrl, { method: 'GET' });
+      const response = await fetch(
+        `${cfg.API.HOST}/scrapers/shops/v2/results?searchTerm=${value}&shops=${searchShops}`,
+        { method: 'GET' }
+      );
 
       const result = await response.json();
 
