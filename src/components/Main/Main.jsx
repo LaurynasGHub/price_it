@@ -37,6 +37,7 @@ function Main() {
 
     try {
       if (selectedShopList.length === 0) {
+        setSearchResults(null);
         setErrorMessage('Please select at least one shop');
         return null;
       }

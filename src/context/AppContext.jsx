@@ -3,14 +3,14 @@ import { createContext, useState } from 'react';
 export const AppContext = createContext();
 
 function AppContextProvider(props) {
+  // >>>BREAK<<<
+  // shopping cart handlers
   const storedCartData = localStorage.getItem('cartData');
   const initialCartData = localStorage.getItem('cartData')
     ? JSON.parse(storedCartData)
     : [];
-
   const [cartData, setCartData] = useState(initialCartData);
 
-  // shopping cart handlers
   const handleAddToCart = (item) => {
     setCartData((prevCartData) => [...prevCartData, item]);
   };
@@ -27,8 +27,15 @@ function AppContextProvider(props) {
     setCartData(() => []);
   };
 
+  // >>>BREAK<<<
   // shop selection handler
-  const [selectedShopList, setSelectedShopList] = useState([]);
+  const storedSelectedShopData = localStorage.getItem('selectedShopData');
+  const initialSelectedShopData = localStorage.getItem('selectedShopData')
+    ? JSON.parse(storedSelectedShopData)
+    : [];
+  const [selectedShopList, setSelectedShopList] = useState(
+    initialSelectedShopData
+  );
 
   function handleShopSelection(item) {
     setSelectedShopList(

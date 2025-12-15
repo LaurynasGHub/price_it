@@ -5,6 +5,7 @@ function ResultCards({ searchResults, shop }) {
   function shopImgSwitch(shop) {
     let imgPath;
 
+    // here, case has to match returned shop names from backend
     switch (shop) {
       case 'rimi':
         imgPath = '/images/RIMI.png';
@@ -54,7 +55,7 @@ function ResultCards({ searchResults, shop }) {
       </div>
       {searchResults.length > 0 ? (
         searchResults.map((item, index) => (
-          <div key={`${item.name}-${index}`}>
+          <div key={index}>
             <ResultCard
               title={item.name}
               price={item.price}
