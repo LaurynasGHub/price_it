@@ -12,7 +12,7 @@ import { cfg } from '../../cfg/cfg';
 function Main() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('No results yet');
-  const { selectedShopList } = useContext(AppContext);
+  const { selectedShopData } = useContext(AppContext);
   const [searchResults, setSearchResults] = useState(() => {
     const storedResults = sessionStorage.getItem('searchResults');
     return storedResults ? JSON.parse(storedResults) : null;
@@ -36,13 +36,13 @@ function Main() {
     }
 
     try {
-      if (selectedShopList.length === 0) {
+      if (selectedShopData.length === 0) {
         setSearchResults(null);
         setErrorMessage('Please select at least one shop');
         return null;
       }
 
-      const searchShops = selectedShopList
+      const searchShops = selectedShopData
         .map((shop) => shop.toLowerCase())
         .join(',');
 

@@ -1,15 +1,14 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../../context/AppContext';
 
 import './shopSelectButton.scss';
 
 function ShopSelectButton({ shopName }) {
-  const [selected, selectToggler] = useState(false);
-  const { handleShopSelection } = useContext(AppContext);
+  const { handleShopSelection, selectedShopData } = useContext(AppContext);
+
+  const selected = selectedShopData.includes(shopName);
 
   function handleClick() {
-    selectToggler(!selected);
-
     handleShopSelection(shopName);
   }
 

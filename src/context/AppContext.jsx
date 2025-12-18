@@ -1,64 +1,58 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const AppContext = createContext();
 
-function AppContextProvider(props) {
-  // >>>BREAK<<<
-  // shopping cart handlers
-  const storedCartData = localStorage.getItem('cartData');
-  const initialCartData = localStorage.getItem('cartData')
-    ? JSON.parse(storedCartData)
-    : [];
-  const [cartData, setCartData] = useState(initialCartData);
+function AppContextProvider({ children }) {
+  // cart data handling
+  const [cartData, setCartData] = useState(() => {
+    const stored = localStorage.getItem('cartData');
+    return stored ? JSON.parse(stored) : [];
+  });
 
   const handleAddToCart = (item) => {
-    setCartData((prevCartData) => [...prevCartData, item]);
+    setCartData((prev) => [...prev, item]);
   };
 
   const handleRemoveFromCart = (item) => {
-    const filteredCardData = cartData.filter(
-      (dataItem) => dataItem.name !== item.name
-    );
-
-    setCartData(filteredCardData);
+    setCartData((prev) => prev.filter((dataItem) => dataItem.id !== item.id));
   };
 
   const handleClearCart = () => {
-    setCartData(() => []);
+    setCartData([]);
   };
 
-  // >>>BREAK<<<
-  // shop selection handler
-  const storedSelectedShopData = localStorage.getItem('selectedShopData');
-  const initialSelectedShopData = localStorage.getItem('selectedShopData')
-    ? JSON.parse(storedSelectedShopData)
-    : [];
-  const [selectedShopList, setSelectedShopList] = useState(
-    initialSelectedShopData
-  );
+  useEffect(() => {
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }, [cartData]);
+
+  // shop selection handling
+  const [selectedShopData, setSelectedShopList] = useState(() => {
+    const stored = localStorage.getItem('selectedShopData');
+    return stored ? JSON.parse(stored) : [];
+  });
 
   function handleShopSelection(item) {
-    setSelectedShopList(
-      (prev) =>
-        prev.includes(item)
-          ? prev.filter((i) => i !== item) // remove
-          : [...prev, item] // add
+    setSelectedShopList((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
     );
   }
+
+  useEffect(() => {
+    localStorage.setItem('selectedShopData', JSON.stringify(selectedShopData));
+  }, [selectedShopData]);
 
   return (
     <AppContext.Provider
       value={{
         cartData,
-        setCartData,
         handleAddToCart,
         handleRemoveFromCart,
         handleClearCart,
-        selectedShopList,
+        selectedShopData,
         handleShopSelection,
       }}
     >
-      {props.children}
+      {children}
     </AppContext.Provider>
   );
 }
