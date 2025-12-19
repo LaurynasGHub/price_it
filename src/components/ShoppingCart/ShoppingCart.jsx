@@ -4,10 +4,9 @@ import { AppContext } from '../../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { useIsMobile } from '../../hooks/useIsMobile';
-
 function ShoppingCart() {
-  const { cartData, clearCart, removeFromCart } = useContext(AppContext);
+  const { cartData, clearCart, removeFromCart, useIsMobile } =
+    useContext(AppContext);
 
   const isMobile = useIsMobile();
   const [totalPrice, setTotalPrice] = useState(0);

@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import { useCart } from '../hooks/useCart';
 import { useShopSelection } from '../hooks/useShopSelection';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export const AppContext = createContext(null);
 
@@ -13,6 +14,7 @@ function AppContextProvider({ children }) {
       value={{
         ...cart,
         ...shopSelection,
+        useIsMobile,
       }}
     >
       {children}

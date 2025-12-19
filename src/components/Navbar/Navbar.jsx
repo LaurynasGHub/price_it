@@ -1,15 +1,17 @@
+import { useContext } from 'react';
 import useLocalStorage from 'use-local-storage';
 
 // components
 import Toggler from '../Toggler/Toggler';
 
-import { useIsMobile } from '../../hooks/useIsMobile';
-
 import './navbar.scss';
+
+import { AppContext } from '../../context/AppContext';
 
 function Navbar() {
   const preference = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [isDark, setIsDark] = useLocalStorage('isDark', preference);
+  const { useIsMobile } = useContext(AppContext);
   const isMobile = useIsMobile();
 
   return (
