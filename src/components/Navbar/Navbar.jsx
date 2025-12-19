@@ -1,40 +1,16 @@
-import { useState, useEffect } from 'react';
 import useLocalStorage from 'use-local-storage';
-import { NavLink } from 'react-router-dom';
 
 // components
 import Toggler from '../Toggler/Toggler';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUser,
-  faMagnifyingGlass,
-  faMartiniGlassCitrus,
-  faBasketShopping,
-} from '@fortawesome/free-solid-svg-icons';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 import './navbar.scss';
 
 function Navbar() {
   const preference = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [isDark, setIsDark] = useLocalStorage('isDark', preference);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    //if window size is below 600px gives true
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-    // Remove event listener- prevents memory leaks
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <div className="default-div p-4 navbar">

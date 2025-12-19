@@ -4,27 +4,13 @@ import { AppContext } from '../../context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from '@fortawesome/free-solid-svg-icons';
 
+import { useIsMobile } from '../../hooks/useIsMobile';
+
 function ShoppingCart() {
   const { cartData, clearCart, removeFromCart } = useContext(AppContext);
 
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    //if window size is below 600px gives true
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-    // Remove event listener- prevents memory leaks
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   function calculatePrice() {
     let totalPrice = 0;
