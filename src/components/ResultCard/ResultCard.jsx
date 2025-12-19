@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 function ResultCard({ title, price, product }) {
-  const { handleAddToCart } = useContext(AppContext);
+  const { addToCart } = useContext(AppContext);
 
   return (
     <div className="container-fluid">
@@ -21,7 +21,7 @@ function ResultCard({ title, price, product }) {
         <div className="col-3 col-sm-2 col-md-2">
           <button
             className="non-styled-item underline-button default-text"
-            onClick={() => handleAddToCart(product)}
+            onClick={() => addToCart(product)}
           >
             <FontAwesomeIcon icon={faCartShopping} />
           </button>

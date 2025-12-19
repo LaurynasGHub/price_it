@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function ShoppingCart() {
-  const { cartData, handleClearCart, handleRemoveFromCart } =
-    useContext(AppContext);
+  const { cartData, clearCart, removeFromCart } = useContext(AppContext);
 
   const [isMobile, setIsMobile] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -55,7 +54,7 @@ function ShoppingCart() {
         </div>
         <button
           className="non-styled-item underline-button default-text mb-2"
-          onClick={() => handleClearCart()}
+          onClick={() => clearCart()}
         >
           Clear cart
         </button>
@@ -75,7 +74,7 @@ function ShoppingCart() {
             <div className="col-1 col-sm-1 col-md-1 p-0">
               <button
                 className="non-styled-item underline-button default-text p-0"
-                onClick={() => handleRemoveFromCart(item)}
+                onClick={() => removeFromCart(item)}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </button>
