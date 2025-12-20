@@ -48,7 +48,12 @@ function ShoppingCart() {
         cartData.map((item, index) => (
           <div key={index} className="row d-flex custom-border-bottom mb-2">
             <div className="col-5 col-sm-6 col-md-5">
-              <p className="small mb-1">{item.name}</p>
+              <p className="small mb-1">
+                {item.name}
+                {item.quantity > 1 && (
+                  <span className="ms-1">{`x${item.quantity}`}</span>
+                )}
+              </p>
             </div>
             <div className="col-4 col-sm-4 col-md-3 overflow-hidden">
               <p className="small mb-1 text-truncate">{item.shop}</p>

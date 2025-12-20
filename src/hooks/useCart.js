@@ -7,11 +7,30 @@ export function useCart() {
   });
 
   const addToCart = (item) => {
-    setCartData((prev) => [...prev, item]);
+    if (!item.id) {
+      console.error('Item without id added to cart:', item);
+      return;
+    }
+
+    setCartData((prev) => {
+      const existing = prev.find((i) => i.id === item.id);
+
+      if (existing) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+
+      return [...prev, { ...item, quantity: 1 }];
+    });
   };
 
   const removeFromCart = (item) => {
-    setCartData((prev) => prev.filter((dataItem) => dataItem.id !== item.id));
+    setCartData((prev) =>
+      prev
+        .map((i) => (i.id === item.id ? { ...i, quantity: i.quantity - 1 } : i))
+        .filter((i) => i.quantity > 0)
+    );
   };
 
   const clearCart = () => {

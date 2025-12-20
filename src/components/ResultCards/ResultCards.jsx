@@ -63,6 +63,7 @@ function ResultCards({ searchResults, shop }) {
                 name: item.name,
                 price: item.price,
                 shop: shop,
+                id: item.id,
               }}
             />
           </div>
