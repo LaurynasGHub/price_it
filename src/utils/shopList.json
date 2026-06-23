@@ -2,8 +2,7 @@
   "shops": {
     "groceries": [
       { "id": 1, "name": "Maxima" },
-      { "id": 2, "name": "Rimi" },
-      { "id": 3, "name": "Iki" }
+      { "id": 2, "name": "Rimi" }
     ],
 
     "alcohol": [{ "id": 1, "name": "Vynoteka" }]
